@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Alvaro</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+      body {
+          padding:50px 0;
+      }
+  </style>
+
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2">
+          <ul class="nav nav-pills nav-stacked">
+            <li class="<%= 'active' if params[:controller] == 'clientes' %>"><a href="/clientes">Clientes</a></li>
+            <li class="<%= 'active' if params[:controller] == 'retiros' %>"><a href="/retiros">Retiros</a></li>
+            <li class="<%= 'active' if params[:controller] == 'productos' %>"><a href="/productos">Productos</a></li>
+            <li><a href="#">Ventas</a></li>
+            <li><a href="#">Pagos</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-10">
+
+          <%= yield %>
+        </div>
+      </div>
+      <footer>
+        <hr>
+        <p>Sensacional</p>
+      </footer>
+    </div>
+</body>
+</html>

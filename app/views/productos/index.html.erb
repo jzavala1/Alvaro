@@ -1,0 +1,41 @@
+<div class="row">
+  <h2>Productos</h2>
+  <div class="col-lg-12">
+    <%= link_to new_producto_path, remote: true, class: "btn btn-lg btn-success pull-right" do %>
+        <span class="glyphicon glyphicon-plus"></span> Agregar producto
+    <% end %>
+  </div>
+</div>
+<br/>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-hover table-condensed">
+      <thead>
+      <tr>
+        <th>SKU</th>
+        <th>Retiro</th>
+        <th>Nombre</th>
+        <th>Marca</th>
+        <th>Precio</th>
+        <th><span class="glyphicon glyphicon-home"></span></th>
+        <th><span class="glyphicon glyphicon-filter"></span></th>
+        <th><span class="glyphicon glyphicon-wrench"></span></th>
+        <th><span class="glyphicon glyphicon-camera"></span></th>
+        <th><span class="glyphicon glyphicon-globe"></span></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody class="product-index">
+        <%= render "index" %>
+      </tbody>
+    </table>
+
+    <br>
+
+  </div>
+  </div>
+<div id="product-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div id="inner-product-modal" class="modal-content"></div>
+  </div>
+</div>

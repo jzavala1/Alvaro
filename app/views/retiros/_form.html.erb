@@ -1,0 +1,57 @@
+<%= form_for(@retiro) do |f| %>
+  <% if @retiro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@retiro.errors.count, "error") %> prohibited this retiro from being saved:</h2>
+
+      <ul>
+      <% @retiro.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<form role="form">
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <%= f.label :cliente %>
+      <%= f.collection_select :cliente_id, Cliente.all, :id, :name_with_initial, {include_blank: true}, {class:"form-control"} %>
+
+      <!-- f.select :cliente, Cliente.all.collect {|p| [ p.nombre ]}, {prompt: "Seleccione el cliente"}  %>-->
+    </div>
+  </div>
+</div>
+    <div class="row-lg-1">
+      <div class="row-lg-2">
+        <div class="form-group">
+          <%= f.label :fecha %>
+          <%= f.date_select :fecha, {class:"form-control"} %>
+        </div>
+      </div>
+      <div class="row-lg-3">
+        <div class="form-group">
+          <%= f.label :hora %>
+          <%= f.time_select :hora, {class:"form-control"} %>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="form-group">
+          <%= f.label :estado %>
+          <%= f.select( :estado, [['Pendiente', 'Pendiente']], {include_blank: true}, {class:"form-control"}) %>
+        </div>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-lg-12 text-right">
+      <button class="btn btn-default">Cancelar</button>
+      <button class="btn btn-success">Guardar</button>
+    </div>
+  </div>
+</form>
+<% end %>
+
+
+

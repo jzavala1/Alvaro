@@ -1,0 +1,71 @@
+<%= form_for(@cliente) do |f| %>
+  <% if @cliente.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@cliente.errors.count, "error") %> prohibited this cliente from being saved:</h2>
+
+        <ul>
+          <% @cliente.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+<br/>
+<form role="form">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="form-group">
+        <%= f.label :nombre %>
+        <%= f.text_field :nombre, class:"form-control", size:"10" %>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="form-group">
+        <%= f.label :apellido %>
+        <%= f.text_field :apellido, class:"form-control", size:"10" %>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, class:"form-control", size:"10" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="form-group">
+        <%= f.label :telefono %>
+        <%= f.number_field :telefono, class:"form-control", size:"10" %>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="form-group">
+        <%= f.label :direccion %>
+        <%= f.text_field :direccion, class:"form-control", size:"10" %>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="form-group">
+        <%= f.label :comuna %>
+        <br/>
+        <%= f.select( :comuna, [['Cerrillos', 'Cerrillos'], ['Cerro Navia', 'Cerro Navia'], ['Conchalí', 'Conchalí'], ['El Bosque', 'El Bosque'], ['Estación Central', 'Estación Central'], ['Huechuraba', 'Huechuraba'], ['Independencia', 'Independencia'], ['La Cisterna', 'La Cisterna'], ['La Florida', 'La Florida'], ['La Granja', 'La Granja'], ['La Pintana', 'La Pintana'], ['La Reina', 'La Reina'], ['Las Condes', 'Las Condes'], ['Lo Barnechea', 'Lo Barnechea'], ['Lo Espejo', 'Lo Espejo'], ['Lo Prado', 'Lo Prado'], ['Macul', 'Macul'], ['Maipú', 'Maipú'], ['Ñuñoa', 'Ñuñoa'], ['Padre Hurtado', 'Padre Hurtado'], ['Pedro Aguirre Cerda', 'Pedro Aguirre Cerda'], ['Peñalolén', 'Peñalolén'], ['Pirque', 'Pirque'], ['Providencia', 'Providencia'], ['Pudahuel', 'Pudahuel'], ['Puente Alto', 'Puente Alto'], ['Quilicura', 'Quilicura'], ['Quinta Normal', 'Quinta Normal'], ['Recoleta', 'Recoleta'], ['Renca', 'Renca'], ['San Bernardo', 'San Bernardo'], ['San Joaquín', 'San Joaquín'], ['San José de Maipo', 'San José de Maipo'], ['San Miguel', 'San Miguel'], ['San Ramón', 'San Ramón'], ['Santiago', 'Santiago'], ['Vitacura', 'Vitacura']], {include_blank: true}, {class:"form-control"}) %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="form-group">
+        <%= f.label :rut %>
+        <%= f.text_field :rut, class:"form-control", size:"10" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 text-right">
+      <button class="btn btn-default">Cancelar</button>
+      <button class="btn btn-success">Guardar</button>
+    </div>
+  </div>
+</form>
+<% end %>

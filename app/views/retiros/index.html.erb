@@ -1,0 +1,99 @@
+<div class="row">
+  <h2>Retiros</h2>
+  <div class="col-lg-12">
+    <%= link_to new_retiro_path, type: "submit", class: "btn btn-lg btn-success pull-right" do %>
+        <span class="glyphicon glyphicon-plus"></span> Agregar retiro
+    <% end %>
+  </div>
+</div>
+<br/>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-hover table-condensed">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Cliente</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Dirección</th>
+        <th>Comuna</th>
+        <th>Estado</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @retiros.each do |retiro| %>
+          <tr>
+            <td><%= retiro.id %></td>
+            <td><%= retiro.cliente.name_surename %></td>
+            <td><%= retiro.fecha %></td>
+            <td><%= retiro.hora %></td>
+            <td><%= retiro.cliente.direccion %></td>
+            <td><%= retiro.cliente.comuna %></td>
+            <td><%= retiro.estado %></td>
+            <td>
+              <button class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-th-list"></span></button>
+              <a  href="./productos/_short_form"><button class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus"></span></button></a>
+              <div class="dropdown pull-right">
+                <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                  <span class="glyphicon glyphicon-cog"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                  <li role="presentation"><a role="menuitem" tabindex="-1"><%= link_to 'Ver', retiro %></a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1"><%= link_to 'Editar', edit_retiro_path(retiro) %></a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-toggle="modal" data-target="#enviarContrato">Enviar contrato</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-toggle="modal" data-target="#eliminarRetiro"><%= link_to 'Eliminar', retiro, method: :delete, data: { confirm: '¿Estás seguro?' } %></a></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td colspan="100%">
+              <table class="table table-condensed">
+                <thead>
+                <tr>
+                  <th>SKU</th>
+                  <th>Categoría</th>
+                  <th>Nombre</th>
+                  <th>Estado</th>
+                  <th>Recibir</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% retiro.productos.each do |producto| %>
+                <tr>
+
+                  <td><% producto.sku %></td>
+                  <td><% producto.categorias_todas %></td>
+                  <td><% producto.nombre %></td>
+                  <td><span class="glyphicon glyphicon-ok"></span></td>
+                  <td><button class="btn btn-success btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"><span class="glyphicon glyphicon-ok"></span></button></td>
+                  <td>
+                    <div class="dropdown pull-right">
+                      <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="">Ver/Editar</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-toggle="modal" data-target="#eliminarProducto">Eliminar</a></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                    <% end %>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br>
+
+

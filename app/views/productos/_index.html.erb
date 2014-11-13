@@ -1,0 +1,26 @@
+<% @productos.each do |producto| %>
+    <tr>
+      <td><%= producto.sku %></td>
+      <td><%= producto.retiro_id %></td>
+      <td><%= producto.nombre %></td>
+      <td><%= producto.marca %></td>
+      <td><%= producto.precio %></td>
+      <td><span class="glyphicon glyphicon-ok text-success"></span></td>
+      <td><span class="<%= 'glyphicon glyphicon-ok text-success' if params[:controller] == 'Ingresado' or  params[:controller] == 'Limpiado' or  params[:controller] == 'Fotografiado' or  params[:controller] == 'Publicado'%>"></span></td>
+      <td><span class="<%= 'glyphicon glyphicon-ok text-success' if params[:controller] == 'Limpiado' or  params[:controller] == 'Fotografiado' or  params[:controller] == 'Publicado' %>"></span></td>
+      <td><span class="<%= 'glyphicon glyphicon-ok text-success' if params[:controller] == 'Fotografiado' or  params[:controller] == 'Publicado' %>"></span></td>
+      <td><span class="<%= 'glyphicon glyphicon-ok text-success' if params[:controller] == 'Publicado' %>"></span></td>
+      <td>
+        <div class="dropdown pull-right">
+          <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-cog"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation"><a role="menuitem" tabindex="-1"><%= link_to 'Ver', producto %></a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1"><%= link_to 'Editar', edit_producto_path(producto), remote: true %></a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1"><%= link_to 'Eliminar', producto_delete_path(producto), remote: true  %></a></li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+<% end %>
