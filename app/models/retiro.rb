@@ -3,7 +3,8 @@ class Retiro < ActiveRecord::Base
 
   has_many :productos
 
-  accepts_nested_attributes_for :productos
+  accepts_nested_attributes_for :productos,
+                                :allow_destroy => true
 
   def mostrar
     "#{id}"

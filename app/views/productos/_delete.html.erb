@@ -6,6 +6,6 @@
   Estás seguro que quieres eliminar <b><%= @producto.nombre %></b>?
 </div>
 <div class="modal-footer">
-  <%= link_to "Sí, eliminarlo", productos_path(@producto), method: :delete, remote: true, class: "btn btn-danger" %>
+  <%= link_to "Sí, eliminarlo", producto_path(@producto), method: :delete, remote: true, class: "btn btn-danger" %>
   <%= link_to "Cancelar", "#", class: "btn", data: { dismiss: "modal" } %>
 </div>

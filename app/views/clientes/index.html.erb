@@ -1,5 +1,5 @@
 <div class="row">
-  <h2>Clientes</h2>
+  <h2>Clientes <%= "(#{Cliente.count})" -%></h2>
   <div class="col-lg-12">
     <%= link_to new_cliente_path, type: "submit", class: "btn btn-lg btn-success pull-right" do %>
         <span class="glyphicon glyphicon-plus"></span> Agregar cliente

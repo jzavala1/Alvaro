@@ -11,6 +11,7 @@ class ProductosController < ApplicationController
   # GET /productos/1
   # GET /productos/1.json
   def show
+    @producto = Producto.find(params[:id])
   end
 
   def delete
@@ -24,6 +25,11 @@ class ProductosController < ApplicationController
   # GET /productos/new
   def new
     @producto = Producto.new
+  end
+
+  # GET /productos/newshort
+  def newshort
+    @producto = Producto.newshort
   end
 
   # GET /productos/1/edit
@@ -43,9 +49,11 @@ class ProductosController < ApplicationController
       if @producto.save
         format.html { redirect_to @producto, notice: 'Producto was successfully created.' }
         format.json { render action: 'show', status: :created, location: @producto }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @producto.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -57,9 +65,11 @@ class ProductosController < ApplicationController
       if @producto.update(producto_params)
         format.html { redirect_to @producto, notice: 'Producto was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: 'edit' }
         format.json { render json: @producto.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -71,6 +81,7 @@ class ProductosController < ApplicationController
     respond_to do |format|
       format.html { redirect_to productos_url }
       format.json { head :no_content }
+      format.js { }
     end
   end
 

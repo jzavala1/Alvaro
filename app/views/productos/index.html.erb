@@ -1,5 +1,5 @@
 <div class="row">
-  <h2>Productos</h2>
+  <h2>Productos <%= "(#{Producto.count})" -%></h2>
   <div class="col-lg-12">
     <%= link_to new_producto_path, remote: true, class: "btn btn-lg btn-success pull-right" do %>
         <span class="glyphicon glyphicon-plus"></span> Agregar producto
@@ -9,7 +9,7 @@
 <br/>
 <div class="row">
   <div class="col-lg-12">
-    <table class="table table-hover table-condensed">
+    <table class="table table-hover table-condensed" id="products-table">
       <thead>
       <tr>
         <th>SKU</th>
@@ -26,7 +26,9 @@
       </tr>
       </thead>
       <tbody class="product-index">
-        <%= render "index" %>
+      <% @productos.each do |producto| %>
+        <%= render "index", :producto=>producto %>
+          <% end %>
       </tbody>
     </table>
 
