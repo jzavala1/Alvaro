@@ -1,9 +1,0 @@
-$("ul.errors").html("")
-<% if @producto.errors.any? %>
-    <% @producto.errors.full_messages.each do |message| %>
-    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
-    <% end %>
-<% else %>
-    $(".product-index").append("<%= escape_javascript(render 'index', :producto=>@producto) %>")
-    $("#product-modal").modal("hide")
-<% end %>

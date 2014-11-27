@@ -1,16 +1,4 @@
-Alvaro::Application.routes.draw do
-
-  resources :productos do
-    get "delete"
-  end
-
-  root to: "productos#index"
-
-  resources :retiros
-
-  resources :clientes
-
-
+Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
