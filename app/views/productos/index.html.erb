@@ -1,9 +1,14 @@
 <div class="row">
   <h2>Productos <%= "(#{Producto.count})" -%></h2>
+  <div class="row">
   <div class="col-lg-12">
     <%= link_to new_producto_path, remote: true, class: "btn btn-lg btn-success pull-right" do %>
         <span class="glyphicon glyphicon-plus"></span> Agregar producto
     <% end %>
+    <%= link_to productos_path(format: :csv), class: "btn btn-lg btn-default pull-right" do %>
+    <span class="glyphicon glyphicon-list-alt"></span> Generar CSV
+    <% end %>
+    </div>
   </div>
 </div>
 <br/>

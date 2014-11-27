@@ -44,9 +44,9 @@
                   <li role="presentation"><a role="menuitem" tabindex="-1"><%= link_to 'Ver', cliente %></a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1"><%= link_to 'Editar', edit_cliente_path(cliente) %></a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1">Log</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Ver productos</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1"><%= link_to 'Ver Productos', "#", :cliente=>cliente %></a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Enviar condiciones</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Programar retiro</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1"><%= link_to 'Programar retiro', new_retiro_path %></a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1"><%= link_to 'Eliminar', cliente, method: :delete, data: { confirm: '¿Estás seguro?' } %></a></li>
                 </ul>
               </div>
@@ -55,5 +55,10 @@
       <% end %>
       </tbody>
     </table>
+  </div>
+</div>
+<div id="product-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div id="inner-product-modal" class="modal-content"></div>
   </div>
 </div>

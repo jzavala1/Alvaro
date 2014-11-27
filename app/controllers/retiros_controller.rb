@@ -21,6 +21,11 @@ class RetirosController < ApplicationController
   def edit
   end
 
+  def productos
+    @retiro = Retiro.find(params[:id])
+    @productos = @retiro.productos
+  end
+
   # POST /retiros
   # POST /retiros.json
   def create

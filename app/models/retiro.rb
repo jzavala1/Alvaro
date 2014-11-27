@@ -1,7 +1,8 @@
 class Retiro < ActiveRecord::Base
+
   belongs_to :cliente
 
-  has_many :productos
+  has_many :productos, :dependent => :destroy
 
   accepts_nested_attributes_for :productos,
                                 :allow_destroy => true

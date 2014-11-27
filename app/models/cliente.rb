@@ -1,5 +1,6 @@
 class Cliente < ActiveRecord::Base
-  has_many :retiros
+  has_many :retiros, :dependent => :destroy
+  has_many :productos, :through => :retiros
 
   accepts_nested_attributes_for :retiros
 

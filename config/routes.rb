@@ -1,4 +1,5 @@
 Alvaro::Application.routes.draw do
+
   resources :productos do
     get "delete"
   end
@@ -8,6 +9,7 @@ Alvaro::Application.routes.draw do
   resources :retiros
 
   resources :clientes
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

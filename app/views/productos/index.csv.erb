@@ -1,0 +1,5 @@
+<%- headers = ['sku', '_attribute_set', '_type', 'categories', '_product_websites', 'name', 'description', 'short_description', 'price', 'weight', 'manufacturer', 'image', 'small_image', 'thumbnail', 'media_gallery', 'status', 'image_label', 'small_image_label', 'thumbnail_label', 'tax_class_id', 'estado', 'precio_ebay', 'precio_mercadolibre', 'precio_nuevo_chile', 'precio_nuevo_externo', 'dueno', 'talla', 'pilas', 'precio_referencia_nuevo', 'qty', 'is_in_stock', '_media_image', 'media_label', 'media_position'] -%>
+<%= CSV.generate_line headers %>
+<%- @productos.each do |producto| -%>
+    <%= CSV.generate_line([producto.sku, 'Default', 'simple', producto.categorias_todas, 'base', producto.nombre, producto.descripcion, producto.descripcion, producto.precio, producto.peso, producto.marca, producto.imagen, producto.imagen, producto.imagen,nil, '1',nil, nil, nil, nil, producto.estado, producto.precio_usado_externo, producto.precio_usado_chile, producto.precio_nuevo_chile, producto.precio_nuevo_externo, producto.retiro.cliente.name_surename, nil, nil, producto.precio_referencia, '1', '1', producto.imagen, nil, '1']) %>
+<%- end -%>

@@ -8,6 +8,17 @@ class ProductosController < ApplicationController
     @productos = Producto.all
   end
 
+  def index2
+    @productos = Producto.all
+    respond_to do |format|
+      format.html
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"productos-list\""
+        headers['Content-Type'] ||= 'text/csv'
+      end
+    end
+  end
+
   # GET /productos/1
   # GET /productos/1.json
   def show
