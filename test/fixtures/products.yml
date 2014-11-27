@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  observation: MyText
+  status: MyString
+  category_id: 
+  sub_category_id: 
+  section_id: 
+  name: MyText
+  sku: MyString
+  brand: MyString
+  new_foreign_price: 1
+  new_chilean_price: 1
+  used_foreign_price: 1
+  used_chilean_price: 1
+  reference_price: 1
+  price: 1
+  order_id: 
+  weight: 9.99
+  description: MyText
+
+two:
+  observation: MyText
+  status: MyString
+  category_id: 
+  sub_category_id: 
+  section_id: 
+  name: MyText
+  sku: MyString
+  brand: MyString
+  new_foreign_price: 1
+  new_chilean_price: 1
+  used_foreign_price: 1
+  used_chilean_price: 1
+  reference_price: 1
+  price: 1
+  order_id: 
+  weight: 9.99
+  description: MyText
