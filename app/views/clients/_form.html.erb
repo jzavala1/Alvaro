@@ -1,14 +1,22 @@
-<%= simple_form_for @client, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :rut %>
-  <%= f.input :email %>
-  <%= f.input :phone %>
-  <%= f.input :address %>
-  <%= f.input :zone do %>
-    <%= f.select :zone, Client.zones %>
-  <% end %>
-  <%= f.input :state %>
+<%= simple_form_for @client do |f| %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :rut %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :email %>
+      <%= f.input :phone %>
+      <%= f.input :address %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :zone do %>
+        <%= f.select :zone, Client.zones, {include_blank: true}, class: 'form-control'  %>
+      <% end %>
+      <%= f.input :state %>
+    </div>
+  </div>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

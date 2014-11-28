@@ -30,27 +30,18 @@
         <td>
           <div class="dropdown pull-right">
             <button class="btn btn-default btn-mini dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-              <span class="glyphicon icon-cog"></span>
+              <span class="glyphicon glyphicon-cog"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
               <li role="presentation"><%= link_to 'Ver', client, role: "menuitem", tabindex: "-1" %></li>
               <li role="presentation"><%= link_to 'Editar', edit_client_path(client), role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1"><a>Log</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1">Log</a></li>
               <li role="presentation"><%= link_to 'Ver Productos', :cliente => client, role: "menuitem", tabindex: "-1" %></li>
               <li role="presentation"><a role="menuitem" tabindex="-1">Enviar condiciones</a></li>
               <li role="presentation"><%= link_to 'Programar retiro', new_order_path, role: "menuitem", tabindex: "-1" %></li>
               <li role="presentation"><%= link_to 'Eliminar', client, method: :delete, data: { confirm: '¿Estás seguro?' }, role: "menuitem", tabindex: "-1" %></li>
             </ul>
           </div>
-        </td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_client_path(client), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      client_path(client),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
     <% end %>
