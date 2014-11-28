@@ -1,7 +1,14 @@
-<%= simple_form_for @order, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :date %>
-  <%= f.input :status %>
-  <%= f.input :client_id %>
+<%= simple_form_for @order do |f| %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.input :date %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :status %>
+      <%= f.association :client, label_method: :name, value_method: :id, include_blank: false %>
+    </div>
+  </div>
+    
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

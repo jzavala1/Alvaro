@@ -5,35 +5,89 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:date) %></th>
-      <th><%= model_class.human_attribute_name(:status) %></th>
-      <th><%= model_class.human_attribute_name(:client_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th>#</th>
+      <th>Cliente</th>
+      <th>Fecha</th>
+      <th>Dirección</th>
+      <th>Comuna</th>
+      <th>Estado</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= link_to order.id, order_path(order) %></td>
-        <td><%= order.date %></td>
+        <td><%= order.id %></td>
+        <td><%= "#{order.client.first_name} #{order.client.last_name}" %></td>
+        <td><%= order.date.strftime("%d/%m/%Y") %></td>
+        <td><%= order.client.address %></td>
+        <td><%= order.client.zone %></td>
         <td><%= order.status %></td>
-        <td><%= order.client_id %></td>
-        <td><%=l order.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_order_path(order), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      order_path(order),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+          <button class="btn btn-xs btn-primary bind-show-products" data-order-id="<%= order.id %>"><span class="glyphicon glyphicon-th-list"></span></button>
+          <%= link_to "", remote: true, class: "btn btn-xs btn-success" do %>
+              <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+          <div class="dropdown pull-right">
+            <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-cog"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li role="presentation"><%= link_to 'Ver', order, role: "menuitem", tabindex: "-1" %></li>
+              <li role="presentation"><%= link_to 'Editar', edit_order_path(order), role: "menuitem", tabindex: "-1" %></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1">Enviar Contrato</a></li>
+              <li role="presentation"><%= link_to 'Eliminar', order, method: :delete, data: { confirm: '¿Estás seguro?' }, role: "menuitem", tabindex: "-1" %></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td colspan="100%">
+          <table id="order-<%= order.id %>" class="table hide table-condensed">
+            <thead>
+            <tr>
+              <th>SKU</th>
+              <th>Categoría</th>
+              <th>Nombre</th>
+              <th>Estado</th>
+              <th>Recibir</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% order.products.each do |product| %>
+            <tr>
+
+              <td><%= product.sku %></td>
+              <td><%= product.full_category %></td>
+              <td><%= product.name %></td>
+              <td><span class="glyphicon glyphicon-ok"></span></td>
+              <td><button class="btn btn-success btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"><span class="glyphicon glyphicon-ok"></span></button></td>
+              <td>
+                <div class="dropdown pull-right">
+                  <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="">Ver/Editar</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1"><%= link_to 'Eliminar', product_path(product), method: :delete %></a></li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+                <% end %>
+            </tbody>
+          </table>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<div class="center-block" align="center">
+  <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
+</div>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_order_path,

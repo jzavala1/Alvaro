@@ -29,7 +29,7 @@
         <td><%= client.state %></td>
         <td>
           <div class="dropdown pull-right">
-            <button class="btn btn-default btn-mini dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+            <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
               <span class="glyphicon glyphicon-cog"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -47,6 +47,10 @@
     <% end %>
   </tbody>
 </table>
+
+<div class="center-block" align="center">
+  <%= will_paginate @clients, renderer: BootstrapPagination::Rails %>
+</div>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_client_path,
