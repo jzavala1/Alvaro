@@ -5,7 +5,9 @@
   <%= f.input :email %>
   <%= f.input :phone %>
   <%= f.input :address %>
-  <%= f.input :zone %>
+  <%= f.input :zone do %>
+    <%= f.select :zone, Client.zones %>
+  <% end %>
   <%= f.input :state %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

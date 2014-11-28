@@ -5,7 +5,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:first_name) %></th>
       <th><%= model_class.human_attribute_name(:last_name) %></th>
       <th><%= model_class.human_attribute_name(:rut) %></th>
@@ -14,14 +13,12 @@
       <th><%= model_class.human_attribute_name(:address) %></th>
       <th><%= model_class.human_attribute_name(:zone) %></th>
       <th><%= model_class.human_attribute_name(:state) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @clients.each do |client| %>
       <tr>
-        <td><%= link_to client.id, client_path(client) %></td>
         <td><%= client.first_name %></td>
         <td><%= client.last_name %></td>
         <td><%= client.rut %></td>
@@ -30,7 +27,22 @@
         <td><%= client.address %></td>
         <td><%= client.zone %></td>
         <td><%= client.state %></td>
-        <td><%=l client.created_at %></td>
+        <td>
+          <div class="dropdown pull-right">
+            <button class="btn btn-default btn-mini dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+              <span class="glyphicon icon-cog"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li role="presentation"><%= link_to 'Ver', client, role: "menuitem", tabindex: "-1" %></li>
+              <li role="presentation"><%= link_to 'Editar', edit_client_path(client), role: "menuitem", tabindex: "-1" %></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1"><a>Log</a></li>
+              <li role="presentation"><%= link_to 'Ver Productos', :cliente => client, role: "menuitem", tabindex: "-1" %></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1">Enviar condiciones</a></li>
+              <li role="presentation"><%= link_to 'Programar retiro', new_order_path, role: "menuitem", tabindex: "-1" %></li>
+              <li role="presentation"><%= link_to 'Eliminar', client, method: :delete, data: { confirm: '¿Estás seguro?' }, role: "menuitem", tabindex: "-1" %></li>
+            </ul>
+          </div>
+        </td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_client_path(client), :class => 'btn btn-mini' %>
