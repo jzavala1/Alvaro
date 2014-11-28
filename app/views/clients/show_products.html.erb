@@ -1,0 +1,32 @@
+<%- model_class = Client -%>
+<%- model_product = Product -%>
+<div class="page-header">
+  <h1>Productos de <%= @client.first_name %></h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>SKU</th>
+      <th>Retiro</th>
+      <th>Nombre</th>
+      <th>Marca</th>
+      <th>Precio</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @client.products.each do |product| %>
+      <tr>
+        <td><%= product.sku %></td>
+        <td><%= product.order.id %></td>
+        <td><%= product.name %></td>
+        <td><%= product.brand %></td>
+        <td><%= product.price %></td>
+        <td><%= product.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Atrás', clients_path, :class => 'btn btn-primary' %>
