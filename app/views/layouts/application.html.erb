@@ -46,13 +46,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Alvaro</a>
+          <%= link_to "Alvaro", :root, :class => "brand" %>
           <div class="container-fluid nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -63,10 +58,14 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li class="nav-header">Menu</li>
+              <li class="<%= 'active' if params[:controller] == 'clients' %>"><%= link_to "Clientes", :clients %></li>
+              <li class="<%= 'active' if params[:controller] == 'orders' %>"><%= link_to "Retiros", :orders %></li>
+              <li class="<%= 'active' if params[:controller] == 'products' %>"><%= link_to "Productos", :products %></li>
+              <li class="nav-header">Categorías</li>
+              <li class="<%= 'active' if params[:controller] == 'categories' %>"><%= link_to "Categorías", :categories %></li>
+              <li class="<%= 'active' if params[:controller] == 'sub_categories' %>"><%= link_to "Subcategorías", :sub_categories %></li>
+              <li class="<%= 'active' if params[:controller] == 'sections' %>"><%= link_to "Secciones", :sections %></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
