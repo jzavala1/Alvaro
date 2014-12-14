@@ -25,11 +25,13 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    puts product_params
 
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
+        format.js { render :on_create }
       else
         format.html { render :new }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -58,6 +60,20 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def sku
+    sku = params[:sku]
+    if sku
+      sku_id = Product.sku_id(sku)
+      respond_to do |format|
+        format.json { render json: {id: sku_id}}
+      end
+    else
+      respond_to do |format|
+        format.json { render json: {id: null}}
+      end
     end
   end
 
