@@ -61,6 +61,13 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def sub_categories
+    @sub_categories = Category.find_by_id(params[:category_id]).sub_categories.select(:id, :name)
+    respond_to do |format|
+      format.json { render json: @sub_categories, status: :ok}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category

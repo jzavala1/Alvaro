@@ -1,13 +1,21 @@
 Rails.application.routes.draw do
   root :to => "dashboard#index"
 
-  resources :products
+  resources :products do
+    collection do 
+      get "sku"
+    end
+  end
 
   resources :sections
 
-  resources :sub_categories
+  resources :sub_categories do
+    get "sections"
+  end
 
-  resources :categories
+  resources :categories do
+    get "sub_categories"
+  end
 
   resources :orders
 

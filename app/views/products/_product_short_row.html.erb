@@ -1,0 +1,18 @@
+<tr>
+  <td><%= product.sku %></td>
+  <td><%= product.full_category %></td>
+  <td><%= product.name %></td>
+  <td><span class="glyphicon glyphicon-ok"></span></td>
+  <td><button class="btn btn-success btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"><span class="glyphicon glyphicon-ok"></span></button></td>
+  <td>
+    <div class="dropdown pull-right">
+      <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="">Ver/Editar</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1"><%= link_to 'Eliminar', product_path(product), method: :delete %></a></li>
+      </ul>
+    </div>
+  </td>
+</tr>

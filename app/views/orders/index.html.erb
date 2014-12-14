@@ -2,6 +2,10 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+
+<div class="alert" id="alert">
+</div>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -24,10 +28,12 @@
         <td><%= order.client.zone %></td>
         <td><%= order.status %></td>
         <td>
-          <button class="btn btn-xs btn-primary bind-show-products" data-order-id="<%= order.id %>"><span class="glyphicon glyphicon-th-list"></span></button>
-          <%= link_to "", remote: true, class: "btn btn-xs btn-success" do %>
-              <span class="glyphicon glyphicon-plus"></span>
-          <% end %>
+          <button class="btn btn-xs btn-primary bind-show-products" data-order-id="<%= order.id %>">
+            <span class="glyphicon glyphicon-th-list"></span>
+          </button>
+          <button class="btn btn-xs btn-success bind-order-id" data-toggle="modal" data-target="#addNewProductModal" data-order-id="<%= order.id %>">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
           <div class="dropdown pull-right">
             <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
               <span class="glyphicon glyphicon-cog"></span>
@@ -56,27 +62,9 @@
             </tr>
             </thead>
             <tbody>
-            <% order.products.each do |product| %>
-            <tr>
-
-              <td><%= product.sku %></td>
-              <td><%= product.full_category %></td>
-              <td><%= product.name %></td>
-              <td><span class="glyphicon glyphicon-ok"></span></td>
-              <td><button class="btn btn-success btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"><span class="glyphicon glyphicon-ok"></span></button></td>
-              <td>
-                <div class="dropdown pull-right">
-                  <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="">Ver/Editar</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1"><%= link_to 'Eliminar', product_path(product), method: :delete %></a></li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-                <% end %>
+              <% order.products.each do |product| %>
+                <%= render 'products/product_short_row', :product => product %>
+              <% end %>
             </tbody>
           </table>
         </td>
@@ -92,3 +80,30 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_order_path,
             :class => 'btn btn-primary' %>
+
+
+<div class="modal fade" id="addNewProductModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Agregar nuevo producto</h4>
+      </div>
+      <%= simple_form_for @product, :remote => true do |o| %>
+        <div class="modal-body">
+          <%= o.input :name, :as => :string%>
+          <%= o.association :category, label_method: :name, value_method: :id, include_blank: true %>
+          <%= o.association :sub_category, label_method: :name, value_method: :id, include_blank: true, disabled: true %>
+          <%= o.association :section, label_method: :name, value_method: :id, include_blank: true, disabled: true %>
+          <%= o.input :observation %>
+          <%= o.input :sku, input_html: { value: '---' } %>
+          <%= o.input :order_id, :as => :hidden %>
+        </div>
+        <div class="modal-footer">
+          <%= o.button :submit, :class => 'btn btn-primary' %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

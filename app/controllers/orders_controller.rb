@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.paginate(:page => params[:page])
+    @product = Product.new
   end
 
   # GET /orders/1

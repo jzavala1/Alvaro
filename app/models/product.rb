@@ -5,6 +5,15 @@ class Product < ActiveRecord::Base
   belongs_to :order
 
   def full_category
-    '/Category/SubCategory/Section'
+    "/#{self.category.name}/#{self.sub_category.name}/#{self.section.name}/"
+  end
+
+  def self.sku_id sku
+    p = Product.where("sku like ?", "#{sku}%").order("sku DESC")[0]
+    if p
+      p.sku.split('-')[-1].to_i + 1
+    else
+      1
+    end
   end
 end
