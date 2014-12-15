@@ -5,4 +5,7 @@
 <% else %>
     $('<%= "#order-#{@product.order.id}" %>').append("<%= escape_javascript(render 'products/product_short_row', :product => @product) %>")
     $("#addNewProductModal").modal("hide")
+    $('#new_product')[0].reset()
+    $('#product_sub_category_id').prop('disabled', true)
+    $('#product_section_id').prop('disabled', true)
 <% end %>
