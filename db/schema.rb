@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127235633) do
+ActiveRecord::Schema.define(version: 20141221233625) do
+
+  create_table "brands", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -50,7 +56,6 @@ ActiveRecord::Schema.define(version: 20141127235633) do
     t.integer  "section_id"
     t.text     "name"
     t.string   "sku"
-    t.string   "brand"
     t.integer  "new_foreign_price"
     t.integer  "new_chilean_price"
     t.integer  "used_foreign_price"
@@ -62,8 +67,10 @@ ActiveRecord::Schema.define(version: 20141127235633) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "brand_id"
   end
 
+  add_index "products", ["brand_id"], name: "index_products_on_brand_id"
   add_index "products", ["category_id"], name: "index_products_on_category_id"
   add_index "products", ["order_id"], name: "index_products_on_order_id"
   add_index "products", ["section_id"], name: "index_products_on_section_id"

@@ -11,7 +11,7 @@
     </div>
     <div class="col-md-4">
       <%= f.input :status %>
-      <%= f.input :brand %>
+      <%= f.association :brand, label_method: :name, value_method: :id, include_blank: :true %>
       <%= f.association :order, label_method: :product_display, value_method: :id, include_blank: true %>
     </div>
     <div class="col-md-4">

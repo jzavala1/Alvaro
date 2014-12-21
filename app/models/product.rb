@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
   belongs_to :sub_category
   belongs_to :section
   belongs_to :order
+  belongs_to :brand
 
   def full_category
     "/#{self.category.name}/#{self.sub_category.name}/#{self.section.name}/"
