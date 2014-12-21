@@ -24,6 +24,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'simple_form'
 gem 'will_paginate-bootstrap'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'momentjs-rails', '>= 2.8.1',  :github => 'derekprior/momentjs-rails'
 
 group :development do
   gem 'better_errors'
