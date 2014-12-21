@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :brands
+
   root :to => "dashboard#index"
 
   resources :products do
