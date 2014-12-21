@@ -8,8 +8,11 @@ class Product < ActiveRecord::Base
     "/#{self.category.name}/#{self.sub_category.name}/#{self.section.name}/"
   end
 
+  def self.sort_sku p1, p2
+  end
+
   def self.sku_id sku
-    p = Product.where("sku like ?", "#{sku}%").order("sku DESC")[0]
+    p = Product.where("sku like ?", "#{sku}%").order("length(sku) DESC").order("sku DESC")[0]
     if p
       p.sku.split('-')[-1].to_i + 1
     else
