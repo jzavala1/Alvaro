@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  resources :brands
-
   root :to => "dashboard#index"
+  
+  devise_scope :user do
+    get '/login' => "users/sessions#new", via: [:get]
+    get '/logout' => "users/sessions#new", via: [:destroy]
+  end
+  
+  devise_for :users, controllers: { sessions: "users/sessions" }
+
+  resources :brands
 
   resources :products do
     collection do 
