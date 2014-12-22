@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   root :to => "dashboard#index"
   
   devise_scope :user do
-    get '/login' => "users/sessions#new", via: [:get]
-    get '/logout' => "users/sessions#new", via: [:destroy]
+    get '/login' => "users/sessions#new"
+    delete '/logout' => "users/sessions#destroy"
   end
   
   devise_for :users, controllers: { sessions: "users/sessions" }
+  resources :users, controller: "users/users_controller"
 
   resources :brands
 
