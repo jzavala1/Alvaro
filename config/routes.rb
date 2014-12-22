@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   
   devise_for :users, controllers: { sessions: "users/sessions" }
-  resources :users, controller: "users/users_controller"
+  resources :users
 
   resources :brands
 

@@ -80,7 +80,7 @@
           </ul>
           <% if user_signed_in? and current_user.admin %>
             <ul class="nav nav-sidebar">
-              <li class="<%= 'active' if params[:controller] == 'users' %>"><a>Usuarios</a></li>
+              <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to "Usuarios", :users %></li>
             </ul>
           <% end %>
         </div>
