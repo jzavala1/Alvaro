@@ -7,7 +7,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:sku) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:brand) %></th>
+      <th><%= model_class.human_attribute_name(:brand_id) %></th>
       <th><%= model_class.human_attribute_name(:price) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
     </tr>
@@ -17,7 +17,7 @@
       <tr>
         <td><%= product.sku %></td>
         <td><%= product.name %></td>
-        <td><%= product.brand %></td>
+        <td><%= product.brand ? product.brand.name : '-' %></td>
         <td><%= product.price %></td>
         <td><%= product.status %></td>
         <td>

@@ -1,3 +1,18 @@
+GIT
+  remote: git://github.com/derekprior/momentjs-rails.git
+  revision: b3ed842ff862a12fa82979c0b629cbd6be8b1151
+  specs:
+    momentjs-rails (2.8.3)
+      railties (>= 3.1)
+
+GIT
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  revision: d0f8a68f30d7ffb34e505845a693df27467424f3
+  branch: master
+  submodules: true
+  specs:
+    datetimepicker-rails (3.1.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -28,12 +43,17 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    bcrypt (3.1.9)
     better_errors (2.0.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
+    bootstrap-sass-extras (0.0.6)
+      rails (>= 3.1.0)
     builder (3.2.2)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -43,6 +63,14 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    debug_inspector (0.0.2)
+    devise (3.4.1)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      responders
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.2.2)
     hike (1.2.3)
@@ -59,6 +87,7 @@ GEM
     mime-types (2.4.3)
     minitest (5.4.3)
     multi_json (1.10.1)
+    orm_adapter (0.5.0)
     pg (0.17.1)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -81,6 +110,8 @@ GEM
     rake (10.4.0)
     rdoc (4.1.2)
       json (~> 1.4)
+    responders (1.1.2)
+      railties (>= 3.2, < 4.2)
     sass (3.2.19)
     sass-rails (4.0.5)
       railties (>= 4.0.0, < 5.0)
@@ -114,6 +145,8 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    warden (1.2.3)
+      rack (>= 1.0)
     will_paginate (3.0.7)
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
@@ -123,10 +156,15 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  binding_of_caller
   bootstrap-sass (~> 3.3.1)
+  bootstrap-sass-extras
   coffee-rails (~> 4.0.0)
+  datetimepicker-rails!
+  devise
   jbuilder (~> 2.0)
   jquery-rails
+  momentjs-rails (>= 2.8.1)!
   pg
   rails (= 4.1.7)
   sass-rails (~> 4.0.3)

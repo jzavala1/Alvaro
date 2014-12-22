@@ -13,6 +13,7 @@
       <th>Marca</th>
       <th>Precio</th>
       <th>Estado</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -24,6 +25,13 @@
         <td><%= product.brand %></td>
         <td><%= product.price %></td>
         <td><%= product.status %></td>
+        <td>
+          <%= link_to edit_product_path(product) do %>
+            <button class="btn btn-default btn-xs pull-right" type="button">
+              <span class="glyphicon glyphicon-edit"></span>
+            </button>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

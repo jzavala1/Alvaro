@@ -38,7 +38,7 @@
               <li role="presentation"><a role="menuitem" tabindex="-1">Log</a></li>
               <li role="presentation"><%= link_to 'Ver Productos', client_show_products_path(client), role: "menuitem", tabindex: "-1" %></li>
               <li role="presentation"><a role="menuitem" tabindex="-1">Enviar condiciones</a></li>
-              <li role="presentation"><%= link_to 'Programar retiro', new_order_path, role: "menuitem", tabindex: "-1" %></li>
+              <li role="presentation"><%= link_to 'Programar retiro', new_order_path(:client_id => client), role: "menuitem", tabindex: "-1" %></li>
               <li role="presentation"><%= link_to 'Eliminar', client, method: :delete, data: { confirm: '¿Estás seguro?' }, role: "menuitem", tabindex: "-1" %></li>
             </ul>
           </div>

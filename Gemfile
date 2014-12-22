@@ -24,6 +24,11 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'simple_form'
 gem 'will_paginate-bootstrap'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'momentjs-rails', '>= 2.8.1',  :github => 'derekprior/momentjs-rails'
+gem 'bootstrap-sass-extras'
+
+gem 'devise'
 
 group :development do
   gem 'better_errors'
@@ -31,6 +36,7 @@ group :development do
   gem 'spring'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem 'binding_of_caller'
 end
 
 group :production do
