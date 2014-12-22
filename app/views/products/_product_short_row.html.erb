@@ -10,8 +10,8 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="">Ver/Editar</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1"><%= link_to 'Eliminar', product_path(product), method: :delete %></a></li>
+        <li role="presentation"><%= link_to 'Editar', edit_product_path(product), role: "menuitem", tabindex: "-1" %></li>
+        <li role="presentation"><%= link_to 'Eliminar', product_path(product), method: :delete, role: "menuitem", tabindex: "-1", data: { confirm: '¿Estás seguro?' } %></li>
       </ul>
     </div>
   </td>
