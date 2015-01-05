@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   resources :orders
 
-  resources :clients do 
+  resources :suppliers do 
     get "show_products"
   end
 

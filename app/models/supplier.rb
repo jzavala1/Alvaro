@@ -1,4 +1,4 @@
-class Client < ActiveRecord::Base
+class Supplier < ActiveRecord::Base
   has_many :orders, :dependent => :destroy
   has_many :products, :through => :orders
 

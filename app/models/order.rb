@@ -1,8 +1,8 @@
 class Order < ActiveRecord::Base
-  belongs_to :client
+  belongs_to :supplier
   has_many :products, :dependent => :destroy
 
   def product_display
-    "#{self.client.name} - #{self.client.address}"
+    "#{self.supplier.name} - #{self.supplier.address}"
   end
 end

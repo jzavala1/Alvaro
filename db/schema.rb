@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141222001230) do
+ActiveRecord::Schema.define(version: 20150105231921) do
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -25,28 +25,15 @@ ActiveRecord::Schema.define(version: 20141222001230) do
     t.datetime "updated_at"
   end
 
-  create_table "clients", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "rut"
-    t.string   "email"
-    t.string   "phone"
-    t.string   "address"
-    t.string   "zone"
-    t.string   "state"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "orders", force: true do |t|
     t.datetime "date"
     t.string   "status"
-    t.integer  "client_id"
+    t.integer  "supplier_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "orders", ["client_id"], name: "index_orders_on_client_id"
+  add_index "orders", ["supplier_id"], name: "index_orders_on_supplier_id"
 
   create_table "products", force: true do |t|
     t.text     "observation"
@@ -93,6 +80,19 @@ ActiveRecord::Schema.define(version: 20141222001230) do
   end
 
   add_index "sub_categories", ["category_id"], name: "index_sub_categories_on_category_id"
+
+  create_table "suppliers", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "rut"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "address"
+    t.string   "zone"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

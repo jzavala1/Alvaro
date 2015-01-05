@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new(client_id: params[:client_id])
+    @order = Order.new(supplier_id: params[:supplier_id])
   end
 
   # GET /orders/1/edit
@@ -70,6 +70,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:date, :status, :client_id)
+      params.require(:order).permit(:date, :status, :supplier_id)
     end
 end
