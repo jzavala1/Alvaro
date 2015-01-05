@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :shippings
+
+  resources :sales
+
+  resources :clients
+
   root :to => "dashboard#index"
   
   devise_scope :user do

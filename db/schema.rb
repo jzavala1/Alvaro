@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105231921) do
+ActiveRecord::Schema.define(version: 20150105234102) do
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20150105231921) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "clients", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -55,13 +64,28 @@ ActiveRecord::Schema.define(version: 20150105231921) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "brand_id"
+    t.integer  "sale_id"
   end
 
   add_index "products", ["brand_id"], name: "index_products_on_brand_id"
   add_index "products", ["category_id"], name: "index_products_on_category_id"
   add_index "products", ["order_id"], name: "index_products_on_order_id"
+  add_index "products", ["sale_id"], name: "index_products_on_sale_id"
   add_index "products", ["section_id"], name: "index_products_on_section_id"
   add_index "products", ["sub_category_id"], name: "index_products_on_sub_category_id"
+
+  create_table "sales", force: true do |t|
+    t.string   "channel"
+    t.integer  "amount"
+    t.date     "payment_date"
+    t.integer  "client_id"
+    t.integer  "shipping_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sales", ["client_id"], name: "index_sales_on_client_id"
+  add_index "sales", ["shipping_id"], name: "index_sales_on_shipping_id"
 
   create_table "sections", force: true do |t|
     t.string   "name"
@@ -71,6 +95,15 @@ ActiveRecord::Schema.define(version: 20150105231921) do
   end
 
   add_index "sections", ["sub_category_id"], name: "index_sections_on_sub_category_id"
+
+  create_table "shippings", force: true do |t|
+    t.string   "status"
+    t.string   "address"
+    t.string   "payment"
+    t.integer  "cost"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sub_categories", force: true do |t|
     t.string   "name"

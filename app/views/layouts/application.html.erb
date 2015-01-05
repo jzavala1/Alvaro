@@ -73,6 +73,11 @@
             <li class="<%= 'active' if params[:controller] == 'products' %>"><%= link_to "Productos", :products %></li>
           </ul>
           <ul class="nav nav-sidebar">
+            <li class="<%= 'active' if params[:controller] == 'clients' %>"><%= link_to "Clientes", :clients %></li>
+            <li class="<%= 'active' if params[:controller] == 'sales' %>"><%= link_to "Ventas", :sales %></li>
+            <li class="<%= 'active' if params[:controller] == 'shippings' %>"><%= link_to "Despachos", :shippings %></li>
+          </ul>
+          <ul class="nav nav-sidebar">
             <li class="<%= 'active' if params[:controller] == 'categories' %>"><%= link_to "Categorías", :categories %></li>
             <li class="<%= 'active' if params[:controller] == 'sub_categories' %>"><%= link_to "Subcategorías", :sub_categories %></li>
             <li class="<%= 'active' if params[:controller] == 'sections' %>"><%= link_to "Secciones", :sections %></li>

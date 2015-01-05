@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  address: MyString
+  payment: MyString
+  cost: 1
+
+two:
+  status: MyString
+  address: MyString
+  payment: MyString
+  cost: 1

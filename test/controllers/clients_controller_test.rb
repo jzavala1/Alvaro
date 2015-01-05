@@ -1,14 +1,14 @@
 require 'test_helper'
 
-class SuppliersControllerTest < ActionController::TestCase
+class ClientsControllerTest < ActionController::TestCase
   setup do
-    @supplier = suppliers(:one)
+    @client = clients(:one)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:suppliers)
+    assert_not_nil assigns(:clients)
   end
 
   test "should get new" do
@@ -16,34 +16,34 @@ class SuppliersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create supplier" do
-    assert_difference('Supplier.count') do
-      post :create, supplier: { address: @supplier.address, email: @supplier.email, first_name: @supplier.first_name, last_name: @supplier.last_name, phone: @supplier.phone, rut: @supplier.rut, state: @supplier.state, zone: @supplier.zone }
+  test "should create client" do
+    assert_difference('Client.count') do
+      post :create, client: { email: @client.email, first_name: @client.first_name, last_name: @client.last_name, phone: @client.phone }
     end
 
-    assert_redirected_to supplier_path(assigns(:supplier))
+    assert_redirected_to client_path(assigns(:client))
   end
 
-  test "should show supplier" do
-    get :show, id: @supplier
+  test "should show client" do
+    get :show, id: @client
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @supplier
+    get :edit, id: @client
     assert_response :success
   end
 
-  test "should update supplier" do
-    patch :update, id: @supplier, supplier: { address: @supplier.address, email: @supplier.email, first_name: @supplier.first_name, last_name: @supplier.last_name, phone: @supplier.phone, rut: @supplier.rut, state: @supplier.state, zone: @supplier.zone }
-    assert_redirected_to supplier_path(assigns(:supplier))
+  test "should update client" do
+    patch :update, id: @client, client: { email: @client.email, first_name: @client.first_name, last_name: @client.last_name, phone: @client.phone }
+    assert_redirected_to client_path(assigns(:client))
   end
 
-  test "should destroy supplier" do
-    assert_difference('Supplier.count', -1) do
-      delete :destroy, id: @supplier
+  test "should destroy client" do
+    assert_difference('Client.count', -1) do
+      delete :destroy, id: @client
     end
 
-    assert_redirected_to suppliers_path
+    assert_redirected_to clients_path
   end
 end
