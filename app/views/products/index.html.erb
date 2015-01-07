@@ -37,6 +37,10 @@
   </tbody>
 </table>
 
+<div class="center-block" align="center">
+  <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+</div>
+
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_product_path,
             :class => 'btn btn-primary' %>
