@@ -89,7 +89,7 @@
       <%= simple_form_for @product, :remote => true do |o| %>
         <div class="modal-body">
           <%= o.input :name, :as => :string %>
-          <%= o.input :brand %>
+          <%= o.association :brand, label_method: :name, value_method: :id, include_blank: true %>
           <%= o.association :category, label_method: :name, value_method: :id, include_blank: true %>
           <%= o.association :sub_category, label_method: :name, value_method: :id, include_blank: true, disabled: true %>
           <%= o.association :section, label_method: :name, value_method: :id, include_blank: true, disabled: true %>
