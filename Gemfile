@@ -37,6 +37,7 @@ group :development do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   gem 'binding_of_caller'
+  gem 'awesome_print'
 end
 
 group :production do

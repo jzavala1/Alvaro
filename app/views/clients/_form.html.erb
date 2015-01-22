@@ -1,25 +1,13 @@
-<%= simple_form_for @client do |f| %>
-  <div class="row">
-    <div class="col-md-4">
-      <%= f.input :first_name %>
-      <%= f.input :last_name %>
-      <%= f.input :rut %>
+<%= simple_form_for @client, :html => { :class => 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f| %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :email %>
+    <%= f.input :phone %>
+  <div class="form-group">
+    <div class='col-sm-offset-3 col-sm-9'>
+      <%= f.button :submit, :class => 'btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  clients_path, :class => 'btn btn-default' %>
     </div>
-    <div class="col-md-4">
-      <%= f.input :email %>
-      <%= f.input :phone %>
-      <%= f.input :address %>
-    </div>
-    <div class="col-md-4">
-      <%= f.input :zone do %>
-        <%= f.select :zone, Client.zones, {include_blank: true}, class: 'form-control' %>
-      <% end %>
-      <%= f.input :state %>
-    </div>
-  </div>
-  <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                clients_path, :class => 'btn' %>
   </div>
 <% end %>

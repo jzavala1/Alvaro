@@ -5,52 +5,39 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:first_name) %></th>
       <th><%= model_class.human_attribute_name(:last_name) %></th>
-      <th><%= model_class.human_attribute_name(:rut) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
       <th><%= model_class.human_attribute_name(:phone) %></th>
-      <th><%= model_class.human_attribute_name(:address) %></th>
-      <th><%= model_class.human_attribute_name(:zone) %></th>
-      <th><%= model_class.human_attribute_name(:state) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @clients.each do |client| %>
       <tr>
-        <td><%= client.first_name %></td>
-        <td><%= client.last_name %></td>
-        <td><%= client.rut %></td>
-        <td><%= client.email %></td>
-        <td><%= client.phone %></td>
-        <td><%= client.address %></td>
-        <td><%= client.zone %></td>
-        <td><%= client.state %></td>
+        <td><%= client.id %></td>
+          <td><%= client.first_name %></td>
+          <td><%= client.last_name %></td>
+          <td><%= client.email %></td>
+          <td><%= client.phone %></td>
+        <td><%=l client.created_at, format: :long %></td>
         <td>
-          <div class="dropdown pull-right">
-            <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-              <span class="glyphicon glyphicon-cog"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-              <li role="presentation"><%= link_to 'Ver', client, role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><%= link_to 'Editar', edit_client_path(client), role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1">Log</a></li>
-              <li role="presentation"><%= link_to 'Ver Productos', client_show_products_path(client), role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1">Enviar condiciones</a></li>
-              <li role="presentation"><%= link_to 'Programar retiro', new_order_path(:client_id => client), role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><%= link_to 'Eliminar', client, method: :delete, data: { confirm: '¿Estás seguro?' }, role: "menuitem", tabindex: "-1" %></li>
-            </ul>
-          </div>
+          <%= link_to client_path(client), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+          <%- end -%>
+          <%= link_to edit_client_path(client), :class => 'btn btn-xs', :title => "#{ t('.edit', :default => t('helpers.links.edit')) }" do %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to client_path(client), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<div class="center-block" align="center">
-  <%= will_paginate @clients, renderer: BootstrapPagination::Rails %>
-</div>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_client_path,

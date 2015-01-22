@@ -3,19 +3,11 @@
 one:
   first_name: MyString
   last_name: MyString
-  rut: MyString
   email: MyString
   phone: MyString
-  address: MyString
-  zone: MyString
-  state: MyString
 
 two:
   first_name: MyString
   last_name: MyString
-  rut: MyString
   email: MyString
   phone: MyString
-  address: MyString
-  zone: MyString
-  state: MyString

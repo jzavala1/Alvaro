@@ -7,7 +7,7 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>Cliente</th>
+      <th>Proveedor</th>
       <th>Fecha</th>
       <th>Dirección</th>
       <th>Comuna</th>
@@ -19,10 +19,10 @@
     <% @orders.each do |order| %>
       <tr>
         <td><%= order.id %></td>
-        <td><%= "#{order.client.first_name} #{order.client.last_name}" %></td>
+        <td><%= "#{order.supplier.first_name} #{order.supplier.last_name}" %></td>
         <td><%= order.date.strftime("%d/%m/%Y") %></td>
-        <td><%= order.client.address %></td>
-        <td><%= order.client.zone %></td>
+        <td><%= order.supplier.address %></td>
+        <td><%= order.supplier.zone %></td>
         <td><%= order.status %></td>
         <td>
           <button class="btn btn-xs btn-primary bind-show-products" data-order-id="<%= order.id %>">
@@ -89,7 +89,7 @@
       <%= simple_form_for @product, :remote => true do |o| %>
         <div class="modal-body">
           <%= o.input :name, :as => :string %>
-          <%= o.input :brand %>
+          <%= o.association :brand, label_method: :name, value_method: :id, include_blank: true %>
           <%= o.association :category, label_method: :name, value_method: :id, include_blank: true %>
           <%= o.association :sub_category, label_method: :name, value_method: :id, include_blank: true, disabled: true %>
           <%= o.association :section, label_method: :name, value_method: :id, include_blank: true, disabled: true %>

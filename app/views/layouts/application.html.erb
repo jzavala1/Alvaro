@@ -68,9 +68,14 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="<%= 'active' if params[:controller] == 'clients' %>"><%= link_to "Clientes", :clients %></li>
+            <li class="<%= 'active' if params[:controller] == 'suppliers' %>"><%= link_to "Proveedores", :suppliers %></li>
             <li class="<%= 'active' if params[:controller] == 'orders' %>"><%= link_to "Retiros", :orders %></li>
             <li class="<%= 'active' if params[:controller] == 'products' %>"><%= link_to "Productos", :products %></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li class="<%= 'active' if params[:controller] == 'clients' %>"><%= link_to "Clientes", :clients %></li>
+            <li class="<%= 'active' if params[:controller] == 'sales' %>"><%= link_to "Ventas", :sales %></li>
+            <li class="<%= 'active' if params[:controller] == 'shippings' %>"><%= link_to "Despachos", :shippings %></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li class="<%= 'active' if params[:controller] == 'categories' %>"><%= link_to "Categorías", :categories %></li>

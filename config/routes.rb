@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :shippings
+
+  resources :sales
+
+  resources :clients
+
   root :to => "dashboard#index"
   
   devise_scope :user do
@@ -29,7 +35,7 @@ Rails.application.routes.draw do
 
   resources :orders
 
-  resources :clients do 
+  resources :suppliers do 
     get "show_products"
   end
 
