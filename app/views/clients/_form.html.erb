@@ -3,6 +3,7 @@
     <%= f.input :last_name %>
     <%= f.input :email %>
     <%= f.input :phone %>
+    <%= f.association :channel, label_method: :name, value_method: :id, include_blank: false %>
   <div class="form-group">
     <div class='col-sm-offset-3 col-sm-9'>
       <%= f.button :submit, :class => 'btn-primary' %>

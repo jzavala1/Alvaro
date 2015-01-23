@@ -1,6 +1,6 @@
 <% if @product.errors.any? %>
     <% @product.errors.full_messages.each do |message| %>
-      $("alert").append($("<div alert-danger>").html("<%= message.html_safe %>"))
+      $("#alert").append($("<div alert-danger>").html("<%= message.html_safe %>"))
     <% end %>
 <% else %>
     $('<%= "#order-#{@product.order.id}" %>').append("<%= escape_javascript(render 'products/product_short_row', :product => @product) %>")

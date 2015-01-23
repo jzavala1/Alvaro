@@ -37,7 +37,8 @@
               <li role="presentation"><%= link_to 'Editar', edit_supplier_path(supplier), role: "menuitem", tabindex: "-1" %></li>
               <li role="presentation"><a role="menuitem" tabindex="-1">Log</a></li>
               <li role="presentation"><%= link_to 'Ver Productos', supplier_show_products_path(supplier), role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1">Enviar condiciones</a></li>
+              <li role="presentation"><%= link_to 'Ver Retiros', supplier_show_orders_path(supplier), role: "menuitem", tabindex: "-1" %></li>
+              <li role="presentation"><%= link_to 'Enviar condiciones', supplier_send_condition_path(supplier), role: "menuitem", tabindex: "-1", remote: true, method: :post  %></li>
               <li role="presentation"><%= link_to 'Programar retiro', new_order_path(:supplier_id => supplier), role: "menuitem", tabindex: "-1" %></li>
               <li role="presentation"><%= link_to 'Eliminar', supplier, method: :delete, data: { confirm: '¿Estás seguro?' }, role: "menuitem", tabindex: "-1" %></li>
             </ul>

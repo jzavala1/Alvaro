@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :channels
+
   resources :shippings
 
   resources :sales
@@ -37,6 +39,8 @@ Rails.application.routes.draw do
 
   resources :suppliers do 
     get "show_products"
+    get "show_orders"
+    post "send_condition"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

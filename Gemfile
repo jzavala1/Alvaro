@@ -29,6 +29,7 @@ gem 'momentjs-rails', '>= 2.8.1',  :github => 'derekprior/momentjs-rails'
 gem 'bootstrap-sass-extras'
 
 gem 'devise'
+gem 'mandrill_mailer'
 
 group :development do
   gem 'better_errors'
