@@ -12,4 +12,8 @@ class Supplier < ActiveRecord::Base
   def name
     "#{first_name} #{last_name}"
   end
+
+  def self.status
+    status = [['Primer Contacto', 'first_contact'], ['Segundo Contacto', 'second_contact'], ['Activo', 'active'], ['Inactivo', 'inactive']]
+  end
 end

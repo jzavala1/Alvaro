@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
   belongs_to :section
   belongs_to :order
   belongs_to :brand
+  belongs_to :sale
 
   validates :name, presence: true
   validates :category, presence: true

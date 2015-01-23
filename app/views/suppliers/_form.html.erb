@@ -14,7 +14,9 @@
       <%= f.input :zone do %>
         <%= f.select :zone, Supplier.zones, {include_blank: true}, class: 'form-control' %>
       <% end %>
-      <%= f.input :state %>
+      <%= f.input :state do %>
+        <%= f.select :state, Supplier.status, {include_blank: true}, class: 'form-control' %>
+      <% end %>
     </div>
   </div>
   <div class="form-actions">

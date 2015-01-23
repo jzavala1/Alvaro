@@ -65,6 +65,19 @@ class SuppliersController < ApplicationController
     @supplier = Supplier.find(params[:supplier_id])
   end
 
+  def show_orders
+    @supplier = Supplier.find(params[:supplier_id])
+  end
+
+  def send_condition
+    @supplier = Supplier.find(params[:supplier_id])
+    ConditionMailer.send_condition(@supplier).deliver
+
+    respond_to do |format|
+      format.js { render '_shared/_send_email' }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_supplier

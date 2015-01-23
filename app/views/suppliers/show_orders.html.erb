@@ -1,32 +1,26 @@
 <%- model_class = Supplier -%>
 <%- model_product = Product -%>
 <div class="page-header">
-  <h1>Productos de <%= @supplier.first_name %></h1>
+  <h1>Retiros de <%= @supplier.first_name %></h1>
 </div>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>SKU</th>
-      <th>Retiro</th>
-      <th>Nombre</th>
-      <th>Marca</th>
-      <th>Precio</th>
+      <th>Id</th>
+      <th>Fecha</th>
       <th>Estado</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <% @supplier.products.each do |product| %>
+    <% @supplier.orders.each do |order| %>
       <tr>
-        <td><%= product.sku %></td>
-        <td><%= product.order.id %></td>
-        <td><%= product.name %></td>
-        <td><%= product.brand %></td>
-        <td><%= product.price %></td>
-        <td><%= product.status %></td>
+        <td><%= order.id %></td>
+        <td><%= order.date %></td>
+        <td><%= order.status %></td>
         <td>
-          <%= link_to edit_product_path(product) do %>
+          <%= link_to edit_order_path(order) do %>
             <button class="btn btn-default btn-xs pull-right" type="button">
               <span class="glyphicon glyphicon-edit"></span>
             </button>
