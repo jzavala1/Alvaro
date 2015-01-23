@@ -18,7 +18,7 @@
     <% @sales.each do |sale| %>
       <tr>
         <td><%= sale.id %></td>
-          <td><%= sale.channel %></td>
+          <td><%= sale.channel.name %></td>
           <td><%= sale.amount %></td>
           <td><%= sale.client_id %></td>
           <td><%= sale.shipping_id %></td>
