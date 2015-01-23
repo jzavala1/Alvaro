@@ -3,9 +3,18 @@
       $("#alert").append($("<div alert-danger>").html("<%= message.html_safe %>"))
     <% end %>
 <% else %>
-    $('<%= "#order-#{@product.order.id}" %>').append("<%= escape_javascript(render 'products/product_short_row', :product => @product) %>")
+    $("#alert").html($("<p class='alert alert-success add-product-notification'>Producto creado</p>"));
+    $("#alert").removeClass('hidden');
+
+    $('<%= "#order-table-#{@product.order.id}" %> tr:last').after("<%= escape_javascript(render 'products/product_short_row', :product => @product) %>")
     $("#addNewProductModal").modal("hide")
     $('#new_product')[0].reset()
     $('#product_sub_category_id').prop('disabled', true)
     $('#product_section_id').prop('disabled', true)
+
+    setTimeout(function () {
+      $('.add-product-notification').slideUp('slow', function() {
+        $(this).html('');
+      });
+    }, 2000);
 <% end %>

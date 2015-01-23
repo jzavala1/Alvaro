@@ -3,6 +3,7 @@
     <li role="presentation" class="active bindInformation"><a href="#">Información básica</a></li>
     <li role="presentation" class="bindPrice"><a href="#">Precios</a></li>
     <li role="presentation" class="bindCategory"><a href="#">Categorías</a></li>
+    <li role="presentation" class="bindSale"><a href="#">Ventas</a></li>
   </ul>
   <div class="row" id="basicInformation">
     <div class="col-md-4">
@@ -46,6 +47,12 @@
     <div class="col-md-6">
       <%= f.association :section, label_method: :name, value_method: :id, include_blank: true %>
       <%= f.input :sku %>
+    </div>
+  </div>
+
+  <div class="row hidden" id="sale">
+    <div class="col-md-6">
+      <%= f.association :sale, label_method: :name, value_method: :id, include_blank: true %>
     </div>
   </div>
 

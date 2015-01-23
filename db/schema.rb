@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122234026) do
+ActiveRecord::Schema.define(version: 20150123024137) do
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -88,15 +88,16 @@ ActiveRecord::Schema.define(version: 20150122234026) do
   add_index "products", ["sub_category_id"], name: "index_products_on_sub_category_id"
 
   create_table "sales", force: true do |t|
-    t.string   "channel"
     t.integer  "amount"
     t.date     "payment_date"
     t.integer  "client_id"
     t.integer  "shipping_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "channel_id"
   end
 
+  add_index "sales", ["channel_id"], name: "index_sales_on_channel_id"
   add_index "sales", ["client_id"], name: "index_sales_on_client_id"
   add_index "sales", ["shipping_id"], name: "index_sales_on_shipping_id"
 
