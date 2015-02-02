@@ -21,6 +21,7 @@ class Product < ActiveRecord::Base
   validates :sub_category, presence: true
   validates :section, presence: true
   validates :sku, presence: true
+  validates :percentage_consignation, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
 
   self.per_page = 25
 
@@ -85,6 +86,14 @@ class Product < ActiveRecord::Base
   end
 
   def self.status_options
-    [['', ''], ['Recibido', 'revieved'], ['Aceptado', 'accepted'], ['Procesado', 'processed'], ['Fotografiado', 'photographed'], ['Vendido', 'sold']]
+    [
+      ['', ''],
+      ['Recibido', 'revieved'],
+      ['Aceptado', 'accepted'],
+      ['Procesado', 'processed'],
+      ['Fotografiado', 'photographed'],
+      ['Vendido', 'sold'],
+      ['Rechazado', 'rejected'],
+    ]
   end
 end

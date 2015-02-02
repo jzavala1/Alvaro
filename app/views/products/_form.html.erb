@@ -12,9 +12,13 @@
       <%= f.input :observation %>
     </div>
     <div class="col-md-4">
-      <%= f.input :status %>
+      <%= f.input :status do %>
+        <%= f.select :status, Product.status_options, {include_blank: false}, class: 'form-control' %>
+      <% end %>
       <%= f.association :brand, label_method: :name, value_method: :id, include_blank: :true %>
       <%= f.association :order, label_method: :product_display, value_method: :id, include_blank: true %>
+      <%= f.input :is_consignation %>
+      <%= f.input :percentage_consignation %>
     </div>
     <div class="col-md-4">
       <%= f.input :weight %>

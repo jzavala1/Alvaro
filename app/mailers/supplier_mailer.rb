@@ -1,9 +1,9 @@
-class ConditionMailer < MandrillMailer::TemplateMailer
+class SupplierMailer < MandrillMailer::TemplateMailer
   default from: 'info@sensacional.cl'
 
   def send_condition(supplier)
-    mandrill_mail template: 'navidad-1',
-                  subject: 'Test',
+    mandrill_mail template: 'condiciones-generales-funcionamiento',
+                  subject: 'Condiciones de servicio',
                   to: {
                     email: supplier.email,
                     name: "#{supplier.first_name} #{supplier.last_name}"

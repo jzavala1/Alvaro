@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123024137) do
+ActiveRecord::Schema.define(version: 20150202204026) do
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -78,6 +78,9 @@ ActiveRecord::Schema.define(version: 20150123024137) do
     t.float    "width"
     t.float    "height"
     t.float    "depth"
+    t.boolean  "is_consignation",         default: false
+    t.date     "publicated_at"
+    t.integer  "percentage_consignation"
   end
 
   add_index "products", ["brand_id"], name: "index_products_on_brand_id"

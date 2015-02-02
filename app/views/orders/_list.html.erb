@@ -40,7 +40,9 @@
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
               <li role="presentation"><%= link_to 'Ver', order, role: "menuitem", tabindex: "-1" %></li>
               <li role="presentation"><%= link_to 'Editar', edit_order_path(order), role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1">Enviar Contrato</a></li>
+              <li role="presentation"><%= link_to 'Confirmar retiro', order_send_confirmation_path(order), method: :post, remote: true, role: "menuitem", tabindex: "-1" %></li>
+              <li role="presentation"><%= link_to 'Enviar contrato', order_send_contract_path(order), method: :post, remote: true, role: "menuitem", tabindex: "-1" %></li>
+              <li role="presentation"><%= link_to 'Enviar oferta', order_send_offer_path(order), method: :post, remote: true, role: "menuitem", tabindex: "-1" %></li>
               <li role="presentation"><%= link_to 'Eliminar', order, method: :delete, data: { confirm: '¿Estás seguro?' }, role: "menuitem", tabindex: "-1" %></li>
             </ul>
           </div>
