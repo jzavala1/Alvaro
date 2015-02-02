@@ -31,6 +31,7 @@ gem 'bootstrap-sass-extras'
 gem 'devise'
 gem 'mandrill_mailer'
 gem 'filterrific', '~> 2.0.0'
+gem 'rails-i18n', '~> 4.0.0'
 
 group :development do
   gem 'better_errors'

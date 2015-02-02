@@ -1,0 +1,8 @@
+<tbody>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.name %></td>
+      <td><%= product.brand ? product.brand.name : '' %></td>
+    </tr>
+  <% end %>
+</tbody>

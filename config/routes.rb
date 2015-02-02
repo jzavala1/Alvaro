@@ -35,7 +35,11 @@ Rails.application.routes.draw do
     get "sub_categories"
   end
 
-  resources :orders
+  resources :orders do
+    post "send_contract"
+    post "send_confirmation"
+    post "send_offer"
+  end
 
   resources :suppliers do 
     get "show_products"

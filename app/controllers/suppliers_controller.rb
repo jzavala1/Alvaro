@@ -86,7 +86,7 @@ class SuppliersController < ApplicationController
 
   def send_condition
     @supplier = Supplier.find(params[:supplier_id])
-    ConditionMailer.send_condition(@supplier).deliver
+    SupplierMailer.send_condition(@supplier).deliver
 
     respond_to do |format|
       format.js { render '_shared/_send_email' }
