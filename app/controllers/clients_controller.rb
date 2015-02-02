@@ -4,8 +4,22 @@ class ClientsController < ApplicationController
   respond_to :html
 
   def index
-    @clients = Client.all
-    respond_with(@clients)
+    @filterrific = initialize_filterrific(
+      Client,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Client.options_for_sorted_by,
+      },
+      persistence_id: 'shared_key',
+      default_filter_params: {},
+      available_filters: [:search_query, :sorted_by],
+    ) or return
+    @clients = @filterrific.find.page(params[:page])
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
