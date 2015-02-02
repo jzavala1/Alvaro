@@ -32,7 +32,8 @@ class Product < ActiveRecord::Base
     }
 
     num_or_conditions = 3
-    joins(:brand).where(
+    joins("LEFT JOIN 'brands' ON 'brands'.'id' = 'products'.'brand_id'")
+    .where(
       terms.map {
         or_clauses = [
           "LOWER(products.name) LIKE ?",
