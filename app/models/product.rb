@@ -32,7 +32,7 @@ class Product < ActiveRecord::Base
     }
 
     num_or_conditions = 3
-    joins("LEFT JOIN 'brands' ON 'brands'.'id' = 'products'.'brand_id'")
+    joins("LEFT JOIN brands ON brands.id = products.brand_id")
     .where(
       terms.map {
         or_clauses = [
@@ -54,7 +54,7 @@ class Product < ActiveRecord::Base
     when /^name_/
       order("LOWER(products.name) #{ direction }")
     when /^brand_name_/
-      order("LOWER(brands.name) #{ direction }").includes(:brand)
+      order("LOWER(brands.name) #{ direction }").joins(:brand)
     else
       raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     end
