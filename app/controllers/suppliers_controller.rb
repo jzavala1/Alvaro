@@ -4,7 +4,22 @@ class SuppliersController < ApplicationController
   # GET /suppliers
   # GET /suppliers.json
   def index
-    @suppliers = Supplier.paginate(:page => params[:page], :per_page => 10)
+    @filterrific = initialize_filterrific(
+      Supplier,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Supplier.options_for_sorted_by,
+      },
+      persistence_id: 'shared_key',
+      default_filter_params: {},
+      available_filters: [:search_query, :sorted_by],
+    ) or return
+    @suppliers = @filterrific.find.page(params[:page])
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /suppliers/1
