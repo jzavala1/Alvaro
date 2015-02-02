@@ -3,76 +3,22 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Proveedor</th>
-      <th>Fecha</th>
-      <th>Dirección</th>
-      <th>Comuna</th>
-      <th>Estado</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.id %></td>
-        <td><%= "#{order.supplier.first_name} #{order.supplier.last_name}" %></td>
-        <td><%= order.date.strftime("%d/%m/%Y") %></td>
-        <td><%= order.supplier.address %></td>
-        <td><%= order.supplier.zone %></td>
-        <td><%= order.status %></td>
-        <td>
-          <button class="btn btn-xs btn-primary bind-show-products" data-order-id="<%= order.id %>">
-            <span class="glyphicon glyphicon-th-list"></span>
-          </button>
-          <button class="btn btn-xs btn-success bind-order-id" data-toggle="modal" data-target="#addNewProductModal" data-order-id="<%= order.id %>">
-            <span class="glyphicon glyphicon-plus"></span>
-          </button>
-          <div class="dropdown pull-right">
-            <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-              <span class="glyphicon glyphicon-cog"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-              <li role="presentation"><%= link_to 'Ver', order, role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><%= link_to 'Editar', edit_order_path(order), role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1">Enviar Contrato</a></li>
-              <li role="presentation"><%= link_to 'Eliminar', order, method: :delete, data: { confirm: '¿Estás seguro?' }, role: "menuitem", tabindex: "-1" %></li>
-            </ul>
-          </div>
-        </td>
-      </tr>
-      <tr id="order-<%= order.id %>" class="hide">
-        <td></td>
-        <td colspan="100%">
-          <table id="order-table-<%= order.id %>" class="table table-condensed">
-            <thead>
-            <tr>
-              <th>SKU</th>
-              <th>Categoría</th>
-              <th>Nombre</th>
-              <th>Estado</th>
-              <th>Recibir</th>
-              <th></th>
-            </tr>
-            </thead>
-            <tbody>
-              <% order.products.each do |product| %>
-                <%= render 'products/product_short_row', :product => product %>
-              <% end %>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<div class="center-block" align="center">
-  <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
+<div class="well">
+  <div class="row">
+    <%= form_for_filterrific @filterrific do |f| %>
+      <div class="col-md-4">
+        <%= f.label 'Buscar' %>
+        <%= f.text_field :search_query, placeholder: 'Buscar', class: 'filterrific-periodically-observed form-control' %>
+      </div>
+      <div class="col-md-4">
+        <%= f.label 'Ordenar' %>
+        <%= f.select :sorted_by, @filterrific.select_options[:sorted_by], {}, class: 'filterrific-periodically-observed form-control' %>
+      </div>
+    <% end %>    
+  </div>
 </div>
+
+<%= render 'orders/list', orders: @orders %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_order_path,
