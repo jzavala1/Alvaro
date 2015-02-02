@@ -78,6 +78,43 @@ class OrdersController < ApplicationController
     end
   end
 
+  def send_contract
+    @order = Order.find(params[:order_id])
+    OrderMailer.send_initial_contract(@order).deliver
+
+    respond_to do |format|
+      format.js { render '_shared/_send_email' }
+    end
+  end
+
+  def send_confirmation
+    @order = Order.find(params[:order_id])
+    OrderMailer.send_order_confirmation(@order).deliver
+
+    respond_to do |format|
+      format.js { render '_shared/_send_email' }
+    end
+  end
+
+  def send_offer
+    @order = Order.find(params[:order_id])
+    @non_consignated = @order.products.where(is_consignation: false).where.not(status: 'rejected')
+    @consignated = @order.products.where(is_consignation: true).where.not(status: 'rejected')
+    @rejected = @order.products.where(status: 'rejected')
+    OrderMailer.send_offer(@order, @non_consignated, @consignated, @rejected).deliver
+
+    respond_to do |format|
+      format.js { render '_shared/_send_email' }
+    end
+  end
+
+  def csv
+    @orders = Order.all
+    respond_to do |format|
+      format.csv { send_data @orders.to_csv }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

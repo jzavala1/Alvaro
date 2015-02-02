@@ -92,6 +92,13 @@ class ProductsController < ApplicationController
     end
   end
 
+  def csv
+    @products = Product.all
+    respond_to do |format|
+      format.csv { send_data @products.to_csv }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
@@ -100,6 +107,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:observation, :status, :category_id, :sub_category_id, :section_id, :name, :sku, :brand_id, :new_foreign_price, :new_chilean_price, :used_foreign_price, :used_chilean_price, :reference_price, :price, :order_id, :weight, :description, :height, :width, :depth)
+      params.require(:product).permit(:observation, :status, :category_id, :sub_category_id, :section_id, :name, :sku, :brand_id, :new_foreign_price, :new_chilean_price, :used_foreign_price, :used_chilean_price, :reference_price, :price, :order_id, :weight, :description, :height, :width, :depth, :is_consignation, :percentage_consignation)
     end
 end

@@ -71,4 +71,13 @@ class Supplier < ActiveRecord::Base
       ['Fecha registro (ascendiente)', 'created_at_asc'],
     ]
   end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |supplier|
+        csv << supplier.attributes.values_at(*column_names)
+      end
+    end
+  end
 end

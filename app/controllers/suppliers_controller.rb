@@ -1,3 +1,5 @@
+require 'csv'
+
 class SuppliersController < ApplicationController
   before_action :set_supplier, only: [:show, :edit, :update, :destroy]
 
@@ -86,10 +88,17 @@ class SuppliersController < ApplicationController
 
   def send_condition
     @supplier = Supplier.find(params[:supplier_id])
-    ConditionMailer.send_condition(@supplier).deliver
+    SupplierMailer.send_condition(@supplier).deliver
 
     respond_to do |format|
       format.js { render '_shared/_send_email' }
+    end
+  end
+
+  def csv
+    @suppliers = Supplier.all
+    respond_to do |format|
+      format.csv { send_data @suppliers.to_csv }
     end
   end
 

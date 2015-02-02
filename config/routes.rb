@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   resources :sales
 
-  resources :clients
+  resources :clients do 
+    collection do
+      get "csv"
+    end
+  end
 
   root :to => "dashboard#index"
   
@@ -22,6 +26,7 @@ Rails.application.routes.draw do
   resources :products do
     collection do 
       get "sku"
+      get "csv"
     end
   end
 
@@ -35,12 +40,22 @@ Rails.application.routes.draw do
     get "sub_categories"
   end
 
-  resources :orders
+  resources :orders do
+    post "send_contract"
+    post "send_confirmation"
+    post "send_offer"
+    collection do
+      get "csv"
+    end
+  end
 
   resources :suppliers do 
     get "show_products"
     get "show_orders"
     post "send_condition"
+    collection do 
+      get "csv"
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
