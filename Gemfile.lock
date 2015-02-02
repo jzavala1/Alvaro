@@ -43,6 +43,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    awesome_print (1.6.1)
     bcrypt (3.1.9)
     better_errors (2.0.0)
       coderay (>= 1.0.0)
@@ -72,7 +73,10 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     erubis (2.7.0)
+    excon (0.43.0)
     execjs (2.2.2)
+    filterrific (2.0.3)
+      rails (>= 3.1.0)
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (2.2.5)
@@ -84,6 +88,13 @@ GEM
     json (1.8.1)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mandrill-api (1.0.53)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
+    mandrill_mailer (0.5.1)
+      actionpack
+      activesupport
+      mandrill-api (~> 1.0.9)
     mime-types (2.4.3)
     minitest (5.4.3)
     multi_json (1.10.1)
@@ -155,6 +166,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.3.1)
@@ -162,8 +174,10 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   datetimepicker-rails!
   devise
+  filterrific (~> 2.0.0)
   jbuilder (~> 2.0)
   jquery-rails
+  mandrill_mailer
   momentjs-rails (>= 2.8.1)!
   pg
   rails (= 4.1.7)

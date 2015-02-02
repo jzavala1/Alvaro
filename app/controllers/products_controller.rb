@@ -4,7 +4,23 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @filterrific = initialize_filterrific(
+      Product,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Product.options_for_sorted_by,
+        filter_by_status: Product.status_options,
+      },
+      persistence_id: 'shared_key',
+      default_filter_params: {},
+      available_filters: [:search_query, :sorted_by, :filter_by_status],
+    ) or return
+    @products = @filterrific.find.page(params[:page])
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /products/1
@@ -84,6 +100,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:observation, :status, :category_id, :sub_category_id, :section_id, :name, :sku, :brand_id, :new_foreign_price, :new_chilean_price, :used_foreign_price, :used_chilean_price, :reference_price, :price, :order_id, :weight, :description)
+      params.require(:product).permit(:observation, :status, :category_id, :sub_category_id, :section_id, :name, :sku, :brand_id, :new_foreign_price, :new_chilean_price, :used_foreign_price, :used_chilean_price, :reference_price, :price, :order_id, :weight, :description, :height, :width, :depth)
     end
 end

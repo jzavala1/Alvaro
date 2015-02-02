@@ -29,6 +29,8 @@ gem 'momentjs-rails', '>= 2.8.1',  :github => 'derekprior/momentjs-rails'
 gem 'bootstrap-sass-extras'
 
 gem 'devise'
+gem 'mandrill_mailer'
+gem 'filterrific', '~> 2.0.0'
 
 group :development do
   gem 'better_errors'
@@ -37,6 +39,7 @@ group :development do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   gem 'binding_of_caller'
+  gem 'awesome_print'
 end
 
 group :production do

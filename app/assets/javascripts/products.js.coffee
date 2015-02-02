@@ -2,30 +2,36 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+clearTabs = () ->
+  $('#basicInformation').addClass('hidden')
+  $('.bindInformation').removeClass('active')
+  $('#price').addClass('hidden')
+  $('.bindPrice').removeClass('active')
+  $('#category').addClass('hidden')
+  $('.bindCategory').removeClass('active')
+  $('#sale').addClass('hidden')
+  $('.bindSale').removeClass('active')
+
 ready = ->
   $('.bindInformation').click ->
+    clearTabs()
     $('#basicInformation').removeClass('hidden')
     $('.bindInformation').addClass('active')
-    $('#category').addClass('hidden')
-    $('#price').addClass('hidden')
-    $('.bindPrice').removeClass('active')
-    $('.bindCategory').removeClass('active')
 
   $('.bindPrice').click ->
+    clearTabs()
     $('#price').removeClass('hidden')
     $('.bindPrice').addClass('active')
-    $('#basicInformation').addClass('hidden')
-    $('#category').addClass('hidden')
-    $('.bindInformation').removeClass('active')
-    $('.bindCategory').removeClass('active')
 
   $('.bindCategory').click ->
+    clearTabs()
     $('#category').removeClass('hidden')
     $('.bindCategory').addClass('active')
-    $('#price').addClass('hidden')
-    $('#basicInformation').addClass('hidden')
-    $('.bindInformation').removeClass('active')
-    $('.bindPrice').removeClass('active')
+
+  $('.bindSale').click ->
+    clearTabs()
+    $('#sale').removeClass('hidden')
+    $('.bindSale').addClass('active')
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

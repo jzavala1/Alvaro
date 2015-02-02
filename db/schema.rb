@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141222001230) do
+ActiveRecord::Schema.define(version: 20150123024137) do
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -25,28 +25,34 @@ ActiveRecord::Schema.define(version: 20141222001230) do
     t.datetime "updated_at"
   end
 
-  create_table "clients", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "rut"
-    t.string   "email"
-    t.string   "phone"
-    t.string   "address"
-    t.string   "zone"
-    t.string   "state"
+  create_table "channels", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "clients", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "state"
+    t.integer  "channel_id"
+  end
+
+  add_index "clients", ["channel_id"], name: "index_clients_on_channel_id"
 
   create_table "orders", force: true do |t|
     t.datetime "date"
     t.string   "status"
-    t.integer  "client_id"
+    t.integer  "supplier_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "orders", ["client_id"], name: "index_orders_on_client_id"
+  add_index "orders", ["supplier_id"], name: "index_orders_on_supplier_id"
 
   create_table "products", force: true do |t|
     t.text     "observation"
@@ -63,18 +69,37 @@ ActiveRecord::Schema.define(version: 20141222001230) do
     t.integer  "reference_price"
     t.integer  "price"
     t.integer  "order_id"
-    t.decimal  "weight"
+    t.float    "weight"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "brand_id"
+    t.integer  "sale_id"
+    t.float    "width"
+    t.float    "height"
+    t.float    "depth"
   end
 
   add_index "products", ["brand_id"], name: "index_products_on_brand_id"
   add_index "products", ["category_id"], name: "index_products_on_category_id"
   add_index "products", ["order_id"], name: "index_products_on_order_id"
+  add_index "products", ["sale_id"], name: "index_products_on_sale_id"
   add_index "products", ["section_id"], name: "index_products_on_section_id"
   add_index "products", ["sub_category_id"], name: "index_products_on_sub_category_id"
+
+  create_table "sales", force: true do |t|
+    t.integer  "amount"
+    t.date     "payment_date"
+    t.integer  "client_id"
+    t.integer  "shipping_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "channel_id"
+  end
+
+  add_index "sales", ["channel_id"], name: "index_sales_on_channel_id"
+  add_index "sales", ["client_id"], name: "index_sales_on_client_id"
+  add_index "sales", ["shipping_id"], name: "index_sales_on_shipping_id"
 
   create_table "sections", force: true do |t|
     t.string   "name"
@@ -85,6 +110,15 @@ ActiveRecord::Schema.define(version: 20141222001230) do
 
   add_index "sections", ["sub_category_id"], name: "index_sections_on_sub_category_id"
 
+  create_table "shippings", force: true do |t|
+    t.string   "status"
+    t.string   "address"
+    t.string   "payment"
+    t.integer  "cost"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sub_categories", force: true do |t|
     t.string   "name"
     t.integer  "category_id"
@@ -93,6 +127,19 @@ ActiveRecord::Schema.define(version: 20141222001230) do
   end
 
   add_index "sub_categories", ["category_id"], name: "index_sub_categories_on_category_id"
+
+  create_table "suppliers", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "rut"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "address"
+    t.string   "zone"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

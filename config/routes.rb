@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :channels
+
+  resources :shippings
+
+  resources :sales
+
+  resources :clients
+
   root :to => "dashboard#index"
   
   devise_scope :user do
@@ -29,8 +37,10 @@ Rails.application.routes.draw do
 
   resources :orders
 
-  resources :clients do 
+  resources :suppliers do 
     get "show_products"
+    get "show_orders"
+    post "send_condition"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

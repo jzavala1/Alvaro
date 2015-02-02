@@ -4,8 +4,24 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.paginate(:page => params[:page])
     @product = Product.new
+
+    @filterrific = initialize_filterrific(
+      Order,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Order.options_for_sorted_by,
+      },
+      persistence_id: 'shared_key',
+      default_filter_params: {},
+      available_filters: [:search_query, :sorted_by, :filter_by_status],
+    ) or return
+    @orders = @filterrific.find.page(params[:page])
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /orders/1
@@ -15,7 +31,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new(client_id: params[:client_id])
+    @order = Order.new(supplier_id: params[:supplier_id])
   end
 
   # GET /orders/1/edit
@@ -70,6 +86,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:date, :status, :client_id)
+      params.require(:order).permit(:date, :status, :supplier_id)
     end
 end

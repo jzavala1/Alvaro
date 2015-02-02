@@ -1,0 +1,25 @@
+<%- model_class = Supplier -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+
+<div class="well">
+  <div class="row">
+    <%= form_for_filterrific @filterrific do |f| %>
+      <div class="col-md-4">
+        <%= f.label 'Buscar' %>
+        <%= f.text_field :search_query, placeholder: 'Buscar', class: 'filterrific-periodically-observed form-control' %>
+      </div>
+      <div class="col-md-4">
+        <%= f.label 'Ordenar' %>
+        <%= f.select :sorted_by, @filterrific.select_options[:sorted_by], {}, class: 'filterrific-periodically-observed form-control' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render 'list', suppliers: @suppliers %>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_supplier_path,
+            :class => 'btn btn-primary' %>

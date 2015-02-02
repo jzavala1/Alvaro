@@ -1,7 +1,7 @@
-<%- model_class = Client -%>
+<%- model_class = Supplier -%>
 <%- model_product = Product -%>
 <div class="page-header">
-  <h1>Productos de <%= @client.first_name %></h1>
+  <h1>Productos de <%= @supplier.first_name %></h1>
 </div>
 
 <table class="table table-striped">
@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @client.products.each do |product| %>
+    <% @supplier.products.each do |product| %>
       <tr>
         <td><%= product.sku %></td>
         <td><%= product.order.id %></td>
@@ -37,4 +37,4 @@
   </tbody>
 </table>
 
-<%= link_to 'Atrás', clients_path, :class => 'btn btn-primary' %>
+<%= link_to 'Atrás', :suppliers, :class => 'btn btn-primary' %>

@@ -1,12 +1,59 @@
 class Client < ActiveRecord::Base
-  has_many :orders, :dependent => :destroy
-  has_many :products, :through => :orders
 
-  def self.zones
-    zones = [['Cerrillos', 'Cerrillos'], ['Cerro Navia', 'Cerro Navia'], ['Conchalí', 'Conchalí'], ['El Bosque', 'El Bosque'], ['Estación Central', 'Estación Central'], ['Huechuraba', 'Huechuraba'], ['Independencia', 'Independencia'], ['La Cisterna', 'La Cisterna'], ['La Florida', 'La Florida'], ['La Granja', 'La Granja'], ['La Pintana', 'La Pintana'], ['La Reina', 'La Reina'], ['Las Condes', 'Las Condes'], ['Lo Barnechea', 'Lo Barnechea'], ['Lo Espejo', 'Lo Espejo'], ['Lo Prado', 'Lo Prado'], ['Macul', 'Macul'], ['Maipú', 'Maipú'], ['Ñuñoa', 'Ñuñoa'], ['Padre Hurtado', 'Padre Hurtado'], ['Pedro Aguirre Cerda', 'Pedro Aguirre Cerda'], ['Peñalolén', 'Peñalolén'], ['Pirque', 'Pirque'], ['Providencia', 'Providencia'], ['Pudahuel', 'Pudahuel'], ['Puente Alto', 'Puente Alto'], ['Quilicura', 'Quilicura'], ['Quinta Normal', 'Quinta Normal'], ['Recoleta', 'Recoleta'], ['Renca', 'Renca'], ['San Bernardo', 'San Bernardo'], ['San Joaquín', 'San Joaquín'], ['San José de Maipo', 'San José de Maipo'], ['San Miguel', 'San Miguel'], ['San Ramón', 'San Ramón'], ['Santiago', 'Santiago'], ['Vitacura', 'Vitacura']]
+  filterrific(
+    default_filter_params: { sorted_by: 'created_at_desc' },
+    available_filters: [
+      :search_query,
+      :sorted_by
+    ]
+  )
+
+  belongs_to :channel
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
+  self.per_page = 25
+
+  scope :search_query, lambda {|query|
+    return nil  if query.blank?
+    terms = query.to_s.downcase.split(/\s+/)
+    terms = terms.map { |e|
+      ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
+    }
+
+    num_or_conditions = 3
+    where(
+      terms.map {
+        or_clauses = [
+          "LOWER(clients.first_name) LIKE ?",
+          "LOWER(clients.last_name) LIKE ?",
+          "LOWER(clients.email) LIKE ?",
+        ].join(' OR ')
+        "(#{ or_clauses })"
+      }.join(' AND '),
+      *terms.map { |e| [e] * num_or_conditions }.flatten
+    )
+  }
+
+  scope :sorted_by, lambda { |sort_option|
+    direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
+    case sort_option.to_s
+    when /^created_at_/
+      order("clients.created_at #{ direction }")
+    when /^name_/
+      order("LOWER(clients.last_name) #{ direction }, LOWER(clients.first_name) #{ direction }")
+    else
+      raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
+    end
+  }
+
+  def self.options_for_sorted_by
+    [
+      ['Nombre (a-z)', 'name_asc'],
+      ['Fecha registro (descendiente)', 'created_at_desc'],
+      ['Fecha registro (ascendiente)', 'created_at_asc'],
+    ]
   end
 
-  def name
-    "#{first_name} #{last_name}"
-  end
 end

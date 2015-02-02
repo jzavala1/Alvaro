@@ -16,3 +16,6 @@
 /tmp
 
 .DS_Store
+
+# Local config
+/local

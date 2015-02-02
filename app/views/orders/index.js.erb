@@ -1,0 +1,12 @@
+<% js = escape_javascript render(partial: 'orders/list', locals: { orders: @orders }) %>
+$("#filterrific_results").html("<%= js %>");
+
+$('.bind-show-products').click(function() {
+  id = $(this).data('order-id')
+  $('#order-' + id).toggleClass('hide')
+});
+
+$('.bind-order-id').click(function() {
+  id = $(this).data('order-id')
+  $('#product_order_id').val(id)
+});

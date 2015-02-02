@@ -2,40 +2,28 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:sku) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:brand_id) %></th>
-      <th><%= model_class.human_attribute_name(:price) %></th>
-      <th><%= model_class.human_attribute_name(:status) %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.sku %></td>
-        <td><%= product.name %></td>
-        <td><%= product.brand ? product.brand.name : '-' %></td>
-        <td><%= product.price %></td>
-        <td><%= product.status %></td>
-        <td>
-          <div class="dropdown pull-right">
-            <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-              <span class="glyphicon glyphicon-cog"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-              <li role="presentation"><%= link_to 'Ver', product, role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><%= link_to 'Editar', edit_product_path(product), role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><%= link_to 'Eliminar', product, method: :delete, data: { confirm: '¿Estás seguro?' }, role: "menuitem", tabindex: "-1" %></li>
-            </ul>
-          </div>
-        </td>
-      </tr>
+
+<div class="well">
+  <div class="row">
+    <%= form_for_filterrific @filterrific do |f| %>
+      <div class="col-md-4">
+        <%= f.label 'Buscar' %>
+        <%= f.text_field :search_query, placeholder: 'Buscar', class: 'filterrific-periodically-observed form-control' %>
+      </div>
+      <div class="col-md-4">
+        <%= f.label 'Ordenar' %>
+        <%= f.select :sorted_by, @filterrific.select_options[:sorted_by], {}, class: 'filterrific-periodically-observed form-control' %>
+      </div>
+      <div class="col-md-4">
+        <%= f.label 'Estado' %>
+        <%= f.select :filter_by_status, @filterrific.select_options[:filter_by_status], {}, class: 'filterrific-periodically-observed form-control' %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
+
+
+<%= render 'list', products: @products %> 
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_product_path,

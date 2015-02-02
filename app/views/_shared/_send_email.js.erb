@@ -1,0 +1,9 @@
+$("#alert").html($("<p class='alert alert-success mail-notification'>Mensaje enviado</p>"));
+$("#alert").removeClass('hidden');
+$('.dropdown').removeClass('open');
+
+setTimeout(function () {
+  $('.mail-notification').slideUp('slow', function() {
+    $(this).html('');
+  });
+}, 2000);
