@@ -4,8 +4,24 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.paginate(:page => params[:page])
     @product = Product.new
+
+    @filterrific = initialize_filterrific(
+      Order,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Order.options_for_sorted_by,
+      },
+      persistence_id: 'shared_key',
+      default_filter_params: {},
+      available_filters: [:search_query, :sorted_by, :filter_by_status],
+    ) or return
+    @orders = @filterrific.find.page(params[:page])
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /orders/1

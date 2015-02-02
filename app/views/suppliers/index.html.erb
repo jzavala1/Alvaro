@@ -2,56 +2,23 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:first_name) %></th>
-      <th><%= model_class.human_attribute_name(:last_name) %></th>
-      <th><%= model_class.human_attribute_name(:rut) %></th>
-      <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:phone) %></th>
-      <th><%= model_class.human_attribute_name(:address) %></th>
-      <th><%= model_class.human_attribute_name(:zone) %></th>
-      <th><%= model_class.human_attribute_name(:state) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @suppliers.each do |supplier| %>
-      <tr>
-        <td><%= supplier.first_name %></td>
-        <td><%= supplier.last_name %></td>
-        <td><%= supplier.rut %></td>
-        <td><%= supplier.email %></td>
-        <td><%= supplier.phone %></td>
-        <td><%= supplier.address %></td>
-        <td><%= supplier.zone %></td>
-        <td><%= supplier.state %></td>
-        <td>
-          <div class="dropdown pull-right">
-            <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-              <span class="glyphicon glyphicon-cog"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-              <li role="presentation"><%= link_to 'Ver', supplier, role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><%= link_to 'Editar', edit_supplier_path(supplier), role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1">Log</a></li>
-              <li role="presentation"><%= link_to 'Ver Productos', supplier_show_products_path(supplier), role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><%= link_to 'Ver Retiros', supplier_show_orders_path(supplier), role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><%= link_to 'Enviar condiciones', supplier_send_condition_path(supplier), role: "menuitem", tabindex: "-1", remote: true, method: :post  %></li>
-              <li role="presentation"><%= link_to 'Programar retiro', new_order_path(:supplier_id => supplier), role: "menuitem", tabindex: "-1" %></li>
-              <li role="presentation"><%= link_to 'Eliminar', supplier, method: :delete, data: { confirm: '¿Estás seguro?' }, role: "menuitem", tabindex: "-1" %></li>
-            </ul>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<div class="center-block" align="center">
-  <%= will_paginate @suppliers, renderer: BootstrapPagination::Rails %>
+<div class="well">
+  <div class="row">
+    <%= form_for_filterrific @filterrific do |f| %>
+      <div class="col-md-4">
+        <%= f.label 'Buscar' %>
+        <%= f.text_field :search_query, placeholder: 'Buscar', class: 'filterrific-periodically-observed form-control' %>
+      </div>
+      <div class="col-md-4">
+        <%= f.label 'Ordenar' %>
+        <%= f.select :sorted_by, @filterrific.select_options[:sorted_by], {}, class: 'filterrific-periodically-observed form-control' %>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+<%= render 'list', suppliers: @suppliers %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_supplier_path,
