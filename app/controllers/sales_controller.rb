@@ -42,6 +42,6 @@ class SalesController < ApplicationController
     end
 
     def sale_params
-      params.require(:sale).permit(:channel_id, :amount, :client_id, :shipping_id)
+      params.require(:sale).permit(:channel_id, :amount, :client_id, :shipping_id, :product_ids => [])
     end
 end

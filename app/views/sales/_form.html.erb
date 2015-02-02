@@ -2,6 +2,7 @@
     <%= f.association :channel %>
     <%= f.association :client, label_method: :first_name, value_method: :id, include_blank: true %>
     <%= f.association :shipping, label_method: :address, value_method: :id, include_blank: true %>
+    <%= f.association :products, input_html: { class: 'multiselect' } %>
   <div class="form-group">
     <div class='col-sm-offset-3 col-sm-9'>
       <%= f.button :submit, :class => 'btn-primary' %>

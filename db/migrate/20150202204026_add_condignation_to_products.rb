@@ -6,6 +6,7 @@ class AddCondignationToProducts < ActiveRecord::Migration
 
     Product.all.each do |product|
       product.is_consignation = true
+      product.percentage_consignation = 0
       product.save
     end
   end
