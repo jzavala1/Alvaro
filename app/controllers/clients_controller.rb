@@ -50,6 +50,13 @@ class ClientsController < ApplicationController
     respond_with(@client)
   end
 
+  def csv
+    @clients = Client.all
+    respond_to do |format|
+      format.csv { send_data @clients.to_csv }
+    end
+  end
+
   private
     def set_client
       @client = Client.find(params[:id])

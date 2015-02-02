@@ -18,4 +18,14 @@
 //= require pickers
 //= require turbolinks
 //= require filterrific/filterrific-jquery
+//= require bootstrap-multiselect
 //= require_tree .
+
+var ready = function() {
+  $('.multiselect').multiselect({
+    enableFiltering: true,
+  });
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

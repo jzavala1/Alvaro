@@ -8,4 +8,9 @@ class Sale < ActiveRecord::Base
   def human_display
     "#{self.client.first_name} #{self.client.last_name} #{self.created_at}"
   end
+
+  # def save sale_params
+  #   #self.amount =  Product.where(id: sale_params[:product_ids]).sum(:price)
+  #   super
+  # end
 end

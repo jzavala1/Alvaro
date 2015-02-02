@@ -1,3 +1,5 @@
+require 'csv'
+
 class SuppliersController < ApplicationController
   before_action :set_supplier, only: [:show, :edit, :update, :destroy]
 
@@ -90,6 +92,13 @@ class SuppliersController < ApplicationController
 
     respond_to do |format|
       format.js { render '_shared/_send_email' }
+    end
+  end
+
+  def csv
+    @suppliers = Supplier.all
+    respond_to do |format|
+      format.csv { send_data @suppliers.to_csv }
     end
   end
 

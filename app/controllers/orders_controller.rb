@@ -108,6 +108,13 @@ class OrdersController < ApplicationController
     end
   end
 
+  def csv
+    @orders = Order.all
+    respond_to do |format|
+      format.csv { send_data @orders.to_csv }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
