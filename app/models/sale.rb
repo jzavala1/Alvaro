@@ -5,5 +5,7 @@ class Sale < ActiveRecord::Base
 
   has_many :products
 
-  # client, shipping
+  def human_display
+    "#{self.client.first_name} #{self.client.last_name} #{self.created_at}"
+  end
 end
